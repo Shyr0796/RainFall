@@ -1,0 +1,52 @@
+name: Research collaboration
+description: Propose a non-commercial research collaboration with RainFall.
+title: "[Collaboration] "
+labels: ["collaboration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your interest in RainFall. Do not include restricted,
+        personal, sensitive, or unlicensed third-party data in this form.
+  - type: input
+    id: team
+    attributes:
+      label: Team and institution
+      placeholder: Research group, university, public agency, or organization
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question and expected non-commercial outcome
+      description: Explain the scientific question and intended public/research value.
+    validations:
+      required: true
+  - type: textarea
+    id: contribution
+    attributes:
+      label: Data, benchmarks, models, observations, or compute resources
+      description: Describe what your team can contribute without uploading restricted material.
+    validations:
+      required: true
+  - type: textarea
+    id: plan
+    attributes:
+      label: Responsibilities, outputs, and timeline
+      description: Include expected roles, publications or artifacts, and approximate timing.
+    validations:
+      required: true
+  - type: textarea
+    id: governance
+    attributes:
+      label: Governance and licensing constraints
+      description: Note ethics, privacy, confidentiality, data-use, or licensing constraints.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Non-commercial scope
+      options:
+        - label: This proposal is for non-commercial research or public-interest use.
+          required: true
+        - label: I have read CONTRIBUTING.md and the repository license.
+          required: true

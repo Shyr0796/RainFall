@@ -1,0 +1,53 @@
+{
+  "dataset_snapshot": {
+    "event_rows": 2776,
+    "unique_event_sensors": 286,
+    "deployment_rows": 479,
+    "unique_deployment_sensors": 479,
+    "event_time_min_utc": "2020-11-16T01:41:17+00:00",
+    "event_time_max_utc": "2026-07-28T01:54:11+00:00"
+  },
+  "profile_qc": {
+    "valid_equal_length_profiles": 2776,
+    "strictly_monotonic_time_profiles": 2775,
+    "max_matches_summary_within_0_011_in": 2728,
+    "largest_profile_max_difference_inches": 1.1500000000000004,
+    "duration_matches_summary_within_0_02_min": 2728,
+    "largest_duration_difference_minutes": 199.98000000000002,
+    "total_profile_points": 337767
+  },
+  "deployment_join": {
+    "events_with_active_deployment": 2774,
+    "events_without_active_deployment": 2,
+    "events_with_local_low_delta": 2774,
+    "tidal_events": 1935,
+    "non_tidal_events": 839
+  },
+  "storm_clustering": {
+    "gap_hours": 12,
+    "storm_clusters": 579,
+    "top_candidate": {
+      "storm_id": 473,
+      "start_utc": "2025-10-30T17:23:54+00:00",
+      "end_utc": "2025-10-31T07:25:21+00:00",
+      "event_rows": 130,
+      "unique_sensors": 126,
+      "borough_count": 5,
+      "boroughs": "Bronx;Brooklyn;Manhattan;Queens;Staten Island",
+      "tidal_events": 25,
+      "non_tidal_events": 105,
+      "unknown_tidal_events": 0,
+      "max_depth_m_sensor": 0.59309,
+      "max_depth_m_local_low": 0.926084,
+      "median_duration_min": 55.709999999999994,
+      "candidate_rank": 1
+    },
+    "note": "Ranking is a reproducible screening rule, not a calibration/test split."
+  },
+  "interpretation_limits": [
+    "The event export contains only detected, human-QC flood episodes; it does not supply continuous dry-period observations.",
+    "Flood depth is measured below the sensor. Local-low depth is an estimate obtained by adding deployment elevation delta.",
+    "Rainfall, tide, DEM, drainage and boundary-condition inputs are not contained in this export.",
+    "This audit does not constitute RainFall validation."
+  ]
+}

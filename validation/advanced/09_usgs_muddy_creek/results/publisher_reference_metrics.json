@@ -1,0 +1,24 @@
+{
+  "hydrologic_events": {
+    "2021-05-27_calibration": {
+      "NSE": 0.909,
+      "PBIAS_percent": -27.7
+    },
+    "2021-06-25_calibration": {
+      "NSE": 0.947,
+      "PBIAS_percent": -1.8
+    },
+    "2021-03-17_validation": {
+      "NSE": 0.596,
+      "PBIAS_percent": 23.9
+    },
+    "2021-04-29_validation": {
+      "NSE": 0.736,
+      "PBIAS_percent": -43.5
+    }
+  },
+  "hydraulic_reference": {
+    "text_table_present": true,
+    "note": "These are the publisher's HEC-HMS/HEC-RAS metrics, not RainFall results."
+  }
+}

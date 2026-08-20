@@ -1,0 +1,12 @@
+[
+  {
+    "file": "usgs_nwis_05485605_05485640_2018.tsv",
+    "bytes": 48772,
+    "sha256": "fa89da9aeb499b23afe4b46783ce3050ac808fc80910095b243347e44492e862"
+  },
+  {
+    "file": "usgs_ofr20211044.pdf",
+    "bytes": 1612368,
+    "sha256": "78d1fd915a3071c78aea55e8485c049c804127eb20de1d2cb63befaba8dc2b18"
+  }
+]

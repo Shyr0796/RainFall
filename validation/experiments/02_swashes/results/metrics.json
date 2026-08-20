@@ -1,0 +1,37 @@
+{
+  "experiment": "02_swashes_ritter_dam_break",
+  "classification": "analytic full-SWE comparison; equation-scope diagnostic, not observations",
+  "source": {
+    "citation": "Delestre et al. (2013), SWASHES",
+    "doi": "https://doi.org/10.1002/fld.3741",
+    "preprint": "https://arxiv.org/abs/1110.0288"
+  },
+  "configuration": {
+    "grid_size": 192,
+    "cell_size_m": 1.0,
+    "initial_left_depth_m": 1.0,
+    "initial_right_depth_m": 0.0,
+    "target_time_s": 2.5,
+    "friction": 0.0,
+    "boundary": "closed; comparison before waves reach domain boundaries",
+    "max_dt_s": 0.04,
+    "cfl": 0.25
+  },
+  "metrics": {
+    "depth_rmse_active_window_m": 0.18726817217735783,
+    "depth_mae_active_window_m": 0.12258553548153928,
+    "velocity_rmse_common_wet_m_s": 1.146825147759048,
+    "analytic_front_x_m": 15.660459763365825,
+    "model_front_x_m_at_h_gt_1mm": 6.5,
+    "front_position_error_m": 9.160459763365825,
+    "initial_volume_m3": 18432.0,
+    "final_volume_m3": 18432.0,
+    "relative_volume_error": 0.0
+  },
+  "interpretation": {
+    "volume_conservation_status": "PASS",
+    "full_swe_profile_status": "DIAGNOSTIC_ONLY",
+    "reason": "RainFall omits advective acceleration, while Ritter is a full shallow-water solution."
+  },
+  "runtime_s": 0.05197739601135254
+}

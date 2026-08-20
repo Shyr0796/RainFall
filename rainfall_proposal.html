@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="面向广西村镇洪涝的多尺度实时降雨—淹没预测与极端情景推演 Proposal" />
+  <title>雨洪智演｜精细化实时淹没预测 Proposal</title>
+  <style>
+    :root {
+      --ink: #132a2e;
+      --muted: #557076;
+      --paper: #f5f7f2;
+      --card: rgba(255,255,255,.9);
+      --line: #d8e1dc;
+      --teal: #087f74;
+      --teal-dark: #075d59;
+      --blue: #2277a5;
+      --sky: #dff2ef;
+      --amber: #e69b35;
+      --red: #c75a4a;
+      --navy: #173f50;
+      --shadow: 0 20px 55px rgba(25,65,70,.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% 4%, rgba(93,194,183,.18), transparent 27rem),
+        linear-gradient(180deg, #f8faf6 0, var(--paper) 100%);
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      line-height: 1.68;
+    }
+    a { color: var(--teal-dark); text-underline-offset: 3px; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid rgba(216,225,220,.8);
+      backdrop-filter: blur(18px);
+      background: rgba(248,250,246,.82);
+    }
+    .topbar .shell { display: flex; align-items: center; justify-content: space-between; min-height: 58px; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .06em; }
+    .brand-mark { width: 25px; height: 25px; border-radius: 50% 50% 48% 52% / 60% 60% 40% 40%; background: linear-gradient(145deg,#25a9a0,#16739a); transform: rotate(45deg); box-shadow: inset 5px 5px 10px rgba(255,255,255,.25); }
+    nav { display: flex; gap: 20px; font-size: 13px; }
+    nav a { color: var(--muted); text-decoration: none; }
+    .hero { padding: 80px 0 54px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.16fr .84fr; gap: 54px; align-items: center; }
+    .kicker { display: inline-flex; align-items: center; gap: 9px; color: var(--teal-dark); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+    .kicker::before { content:""; width: 34px; height: 2px; background: var(--teal); }
+    h1 { margin: 16px 0 18px; font-size: clamp(42px,6vw,74px); line-height: 1.06; letter-spacing: -.045em; }
+    .hero h1 span { display: block; color: var(--teal); }
+    .lead { max-width: 720px; color: var(--muted); font-size: 19px; }
+    .verdict { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+    .pill { border-radius: 999px; padding: 9px 14px; font-weight: 700; font-size: 13px; background: var(--sky); color: var(--teal-dark); }
+    .pill.warn { background: #fff0d8; color: #8b5712; }
+    .map-card { position: relative; min-height: 430px; border-radius: 30px; overflow: hidden; color: white; background: linear-gradient(155deg,#143f50,#086c68); box-shadow: var(--shadow); }
+    .map-card svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .96; }
+    .map-caption { position: absolute; left: 26px; right: 26px; bottom: 24px; display:flex; justify-content:space-between; align-items:end; gap: 16px; z-index:2; }
+    .map-caption strong { display: block; font-size: 23px; }
+    .map-caption small { color: rgba(255,255,255,.75); }
+    .live { border: 1px solid rgba(255,255,255,.28); border-radius: 99px; padding: 7px 11px; font-size: 11px; white-space: nowrap; background: rgba(2,38,48,.25); }
+    .live i { display:inline-block; width:7px; height:7px; margin-right:6px; border-radius:50%; background:#69e1c6; box-shadow:0 0 0 4px rgba(105,225,198,.15); }
+    section { padding: 64px 0; }
+    .section-head { display: grid; grid-template-columns: .35fr .65fr; gap: 38px; margin-bottom: 30px; align-items: start; }
+    .eyebrow { color: var(--teal); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { margin: 6px 0 0; font-size: clamp(30px,4vw,48px); line-height: 1.13; letter-spacing: -.035em; }
+    .section-head p { margin: 25px 0 0; color: var(--muted); font-size: 16px; max-width: 740px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .card { border: 1px solid var(--line); border-radius: 20px; background: var(--card); padding: 25px; box-shadow: 0 10px 28px rgba(25,65,70,.045); }
+    .card .num { display: inline-grid; place-items:center; width:35px; height:35px; border-radius:11px; background:var(--sky); color:var(--teal-dark); font-weight:900; }
+    .card h3 { margin: 18px 0 7px; font-size: 20px; line-height: 1.3; }
+    .card p, .card li { color: var(--muted); font-size: 14px; }
+    .card ul { padding-left: 18px; margin: 12px 0 0; }
+    .reality { margin-top: 18px; display:grid; grid-template-columns: 1.3fr .7fr; gap:18px; }
+    .callout { border-radius:20px; padding:27px; background:var(--navy); color:white; }
+    .callout h3 { margin:0 0 8px; font-size:22px; }
+    .callout p { margin:0; color:rgba(255,255,255,.75); }
+    .score { background:#fff; border:1px solid var(--line); border-radius:20px; padding:24px; }
+    .score-row { display:grid; grid-template-columns: 110px 1fr 46px; align-items:center; gap:12px; font-size:13px; margin:13px 0; }
+    .bar { height:8px; background:#e4ebe7; border-radius:99px; overflow:hidden; }
+    .bar i { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--teal),#48b7ad); }
+    .arch { border:1px solid var(--line); background:#fff; border-radius:26px; padding:28px; overflow:hidden; box-shadow:var(--shadow); }
+    .flow { display:grid; grid-template-columns: repeat(4,1fr); gap:12px; position:relative; }
+    .flow::before { content:""; position:absolute; left:7%; right:7%; top:33px; border-top:2px dashed #b7cec8; z-index:0; }
+    .node { position:relative; z-index:1; text-align:center; padding:0 8px; }
+    .node-icon { margin:0 auto 12px; width:68px; height:68px; display:grid; place-items:center; border-radius:20px; background:var(--sky); color:var(--teal-dark); font-size:25px; font-weight:900; border:6px solid #fff; box-shadow:0 0 0 1px var(--line); }
+    .node strong { display:block; font-size:15px; }
+    .node span { display:block; margin-top:4px; color:var(--muted); font-size:12px; }
+    .layers { margin-top:30px; display:grid; gap:8px; }
+    .layer { display:grid; grid-template-columns: 170px 1fr 110px; gap:18px; align-items:center; border-radius:13px; padding:14px 17px; background:#f3f7f4; font-size:13px; }
+    .layer b { color:var(--teal-dark); }
+    .tag { text-align:center; border-radius:99px; background:white; border:1px solid var(--line); padding:4px 8px; color:var(--muted); }
+    .resolution { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:22px; overflow:hidden; }
+    .res-card { background:white; padding:27px; min-height:238px; }
+    .res-card.featured { background:linear-gradient(155deg,#e9f8f5,#fff); }
+    .res-card .big { color:var(--teal); font-size:41px; font-weight:900; letter-spacing:-.04em; }
+    .res-card h3 { margin:0; }
+    .res-card p { color:var(--muted); font-size:14px; }
+    .res-card small { display:block; border-top:1px solid var(--line); padding-top:13px; color:var(--muted); }
+    .innovation { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .idea { border-left:4px solid var(--teal); border-radius:0 18px 18px 0; padding:22px 24px; background:#fff; border-top:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .idea .label { color:var(--teal); font-size:11px; font-weight:900; letter-spacing:.12em; }
+    .idea h3 { margin:5px 0 7px; }
+    .idea p { margin:0; color:var(--muted); font-size:14px; }
+    .scenario-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:18px; }
+    .scenario-list { display:grid; gap:10px; }
+    .scenario-item { display:grid; grid-template-columns:44px 1fr; gap:13px; align-items:start; padding:14px; background:white; border:1px solid var(--line); border-radius:15px; }
+    .scenario-item i { display:grid; place-items:center; height:38px; border-radius:11px; background:#fff0d8; color:#9a6013; font-style:normal; font-weight:900; }
+    .scenario-item b { font-size:14px; }
+    .scenario-item p { margin:2px 0 0; color:var(--muted); font-size:12px; }
+    .matrix { border:1px solid var(--line); border-radius:18px; background:white; padding:22px; }
+    .matrix h3 { margin:0 0 12px; }
+    table { border-collapse:collapse; width:100%; font-size:13px; }
+    th,td { padding:11px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { color:var(--muted); font-weight:700; }
+    td:first-child { font-weight:800; }
+    .hard { color:var(--red); font-weight:800; }
+    .medium { color:#a86b15; font-weight:800; }
+    .roadmap { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; counter-reset:phase; }
+    .phase { counter-increment:phase; position:relative; border-top:4px solid var(--teal); background:white; border-radius:0 0 17px 17px; padding:21px; border-left:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .phase::before { content:"0" counter(phase); color:#9eb8b3; font-size:12px; font-weight:900; letter-spacing:.12em; }
+    .phase h3 { margin:7px 0 4px; font-size:16px; }
+    .phase p { margin:0; color:var(--muted); font-size:12px; }
+    .metrics { margin-top:17px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .metric { border-radius:14px; background:var(--navy); color:white; padding:17px; }
+    .metric strong { display:block; font-size:22px; color:#7de0cf; }
+    .metric span { font-size:11px; color:rgba(255,255,255,.7); }
+    .warning { margin-top:20px; border:1px solid #eccca0; background:#fff8ec; border-radius:17px; padding:18px 21px; color:#694a1d; font-size:13px; }
+    .warning strong { color:#9a6013; }
+    .decision-board { display:grid; grid-template-columns:230px 1fr; gap:18px; }
+    .decision-score { display:flex; flex-direction:column; justify-content:space-between; min-height:245px; padding:26px; border-radius:22px; color:white; background:linear-gradient(155deg,var(--navy),var(--teal-dark)); }
+    .decision-score strong { font-size:58px; line-height:1; letter-spacing:-.06em; color:#7de0cf; }
+    .decision-score span { font-size:13px; color:rgba(255,255,255,.72); }
+    .decision-sides { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .decision-side { padding:22px; border:1px solid var(--line); border-radius:18px; background:white; }
+    .decision-side h3 { margin:0 0 9px; font-size:18px; }
+    .decision-side ul { margin:0; padding-left:18px; color:var(--muted); font-size:13px; }
+    .research-line { margin-top:18px; padding:25px 28px; border-radius:18px; background:#e8f6f3; color:var(--teal-dark); font-size:20px; font-weight:800; text-align:center; }
+    .data-hero { display:grid; grid-template-columns:.72fr 1.28fr; gap:18px; margin-bottom:18px; }
+    .data-claim { padding:27px; border-radius:20px; background:var(--navy); color:white; }
+    .data-claim strong { display:block; margin-bottom:8px; color:#7de0cf; font-size:23px; }
+    .data-claim p { margin:0; color:rgba(255,255,255,.73); font-size:14px; }
+    .data-facts { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .data-fact { padding:18px; border:1px solid var(--line); border-radius:15px; background:white; }
+    .data-fact b { display:block; color:var(--teal); font-size:22px; }
+    .data-fact span { color:var(--muted); font-size:11px; }
+    .matrix.scroll { overflow-x:auto; }
+    .matrix.scroll table { min-width:880px; }
+    .access { display:inline-block; padding:3px 7px; border-radius:99px; font-size:10px; font-weight:800; white-space:nowrap; background:var(--sky); color:var(--teal-dark); }
+    .access.partner { background:#fff0d8; color:#8b5712; }
+    .access.open { background:#e5f0fb; color:#285f85; }
+    .rebuild { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; counter-reset:rebuild; }
+    .rebuild-step { counter-increment:rebuild; padding:20px; border:1px solid var(--line); border-radius:17px; background:white; }
+    .rebuild-step::before { content:"0" counter(rebuild); color:var(--teal); font-size:11px; font-weight:900; letter-spacing:.12em; }
+    .rebuild-step h3 { margin:6px 0 5px; font-size:16px; }
+    .rebuild-step p { margin:0; color:var(--muted); font-size:12px; }
+    .quality-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px; }
+    .quality { padding:20px; border-top:4px solid var(--teal); border-radius:0 0 15px 15px; background:white; border-left:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .quality:nth-child(2) { border-top-color:var(--amber); }
+    .quality:nth-child(3) { border-top-color:var(--red); }
+    .quality b { display:block; margin-bottom:5px; }
+    .quality p { margin:0; color:var(--muted); font-size:12px; }
+    .sources { background:#eaf0ec; }
+    .sources ol { columns:2; column-gap:45px; margin:22px 0 0; padding-left:22px; }
+    .sources li { break-inside:avoid; margin:0 0 11px; color:var(--muted); font-size:12px; }
+    footer { padding:30px 0 42px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); }
+    .footer-row { display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width: 850px) {
+      nav { display:none; }
+      .hero-grid,.section-head,.reality,.scenario-grid,.decision-board,.data-hero { grid-template-columns:1fr; }
+      .grid-3,.resolution,.roadmap,.metrics { grid-template-columns:repeat(2,1fr); }
+      .hero { padding-top:48px; }
+      .map-card { min-height:360px; }
+      .flow { grid-template-columns:repeat(2,1fr); gap:25px 10px; }
+      .flow::before { display:none; }
+      .layer { grid-template-columns:1fr; gap:5px; }
+      .tag { width:max-content; }
+    }
+    @media (max-width: 560px) {
+      .shell { width:min(100% - 24px,1180px); }
+      h1 { font-size:41px; }
+      .lead { font-size:16px; }
+      section { padding:47px 0; }
+      .grid-3,.resolution,.innovation,.roadmap,.metrics,.decision-sides,.data-facts,.rebuild,.quality-grid { grid-template-columns:1fr; }
+      .map-card { min-height:330px; }
+      .sources ol { columns:1; }
+      .footer-row { display:block; }
+    }
+    @media print {
+      .topbar { display:none; }
+      body { background:white; }
+      section,.hero { padding:34px 0; }
+      .card,.arch,.map-card { box-shadow:none; }
+      a { color:inherit; }
+      .shell { width:94%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell">
+      <div class="brand"><span class="brand-mark"></span>雨洪智演</div>
+      <nav aria-label="页面导航">
+        <a href="#assessment">可行性</a><a href="#decision">立项判断</a><a href="#system">技术路线</a><a href="#innovation">创新点</a><a href="#data">数据策略</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="kicker">Concise research proposal · 2026</div>
+          <h1>从一场雨，推演到<span>每个村落的水深</span></h1>
+          <p class="lead">面向广西村镇、山洪沟与城镇低洼区，构建“动态降雨场—快速水动力—概率风险—转移与工程干预”一体化系统，在分钟级滚动更新中回答：哪里会淹、何时会淹、淹多深、该先转移谁。</p>
+          <div class="verdict">
+            <span class="pill">立项建议：7.5 / 10</span>
+            <span class="pill">总体可行：高</span>
+            <span class="pill">科研价值：高</span>
+            <span class="pill warn">业务化难度：较高</span>
+          </div>
+        </div>
+        <figure class="map-card" aria-label="概念性村镇淹没深度图">
+          <svg viewBox="0 0 520 450" role="img">
+            <defs>
+              <radialGradient id="rain" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#8be0de" stop-opacity=".8"/><stop offset="1" stop-color="#8be0de" stop-opacity="0"/></radialGradient>
+              <linearGradient id="water" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#40c1b5"/><stop offset="1" stop-color="#1678a0"/></linearGradient>
+              <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="#fff" stroke-opacity=".075"/></pattern>
+            </defs>
+            <rect width="520" height="450" fill="url(#grid)"/>
+            <circle cx="365" cy="80" r="155" fill="url(#rain)"/>
+            <path d="M-30 340 C70 280,130 320,205 252 S330 210,560 275 L560 480H-30Z" fill="#0f5661" opacity=".72"/>
+            <path d="M-20 378 C78 295,155 352,228 285 S388 255,550 300" fill="none" stroke="url(#water)" stroke-width="27" stroke-linecap="round" opacity=".86"/>
+            <path d="M350 -20 C330 75,376 112,319 170 S256 251,245 298" fill="none" stroke="#52c8bd" stroke-width="6" opacity=".8"/>
+            <g fill="#e9f3ef" opacity=".92">
+              <path d="M126 253h34v25h-34zM120 253l23-18 23 18z"/><path d="M180 273h27v20h-27zM176 273l17-14 18 14z"/>
+              <path d="M285 239h33v25h-33zM280 239l21-17 22 17z"/><path d="M343 267h27v21h-27zM339 267l18-14 18 14z"/>
+              <path d="M403 228h31v24h-31zM398 228l21-16 21 16z"/>
+            </g>
+            <g fill="#ffbc55"><circle cx="145" cy="270" r="5"/><circle cx="300" cy="254" r="5"/><circle cx="417" cy="243" r="5"/></g>
+            <g fill="none" stroke="#fff" stroke-opacity=".42"><circle cx="145" cy="270" r="16"/><circle cx="145" cy="270" r="29"/><circle cx="300" cy="254" r="19"/></g>
+            <g fill="#a6e6df" opacity=".7"><circle cx="344" cy="44" r="3"/><circle cx="380" cy="59" r="4"/><circle cx="415" cy="38" r="3"/><circle cx="447" cy="87" r="4"/><circle cx="330" cy="98" r="4"/><circle cx="394" cy="118" r="3"/></g>
+          </svg>
+          <figcaption class="map-caption"><div><strong>滚动淹没推演</strong><small>水深 · 到达时间 · 风险概率</small></div><span class="live"><i></i>概念演示</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="assessment">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">01 · 项目判断</div><h2>需求真实，但须把问题定义准确</h2></div>
+          <p>这不是一个单纯的“降雨预测”项目，而是短临气象、分布式水文、二维水动力、工程调度与基层应急的跨尺度系统。最大价值不在更漂亮的水深图，而在把结果转化为可执行的转移时机、路线与干预方案。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><span class="num">1</span><h3>实时生命安全</h3><p>融合雷达、雨量站、短临预报与上游水位，滚动预测未来 0–6 小时的淹没范围、水深、流速和到达时间，优先识别学校、养老点、道路与村落。</p></article>
+          <article class="card"><span class="num">2</span><h3>极端承载边界</h3><p>以多种时空雨型、河道边界及设施失效组合，估计低洼区“首次失守—道路中断—房屋进水”的阈值，而非只算一个最大降雨量。</p></article>
+          <article class="card"><span class="num">3</span><h3>干预措施优选</h3><p>比较沟渠、涵洞、泵站、滞蓄空间、道路抬升与避让搬迁的边际减灾效果；沟渠可能把风险转移到下游，必须在全系统情景中评价。</p></article>
+        </div>
+        <div class="reality">
+          <div class="callout">
+            <h3>必须明确：雨量 ≠ 水深</h3>
+            <p>水深还取决于微地形、初始土壤含水量、地表粗糙度、河道/水库边界、建筑阻水和排水能力。因此系统应输出“概率水深 + 可信度”，不能把单一预测包装成确定答案。</p>
+          </div>
+          <div class="score" aria-label="可行性评分">
+            <div class="score-row"><span>社会需求</span><div class="bar"><i style="width:96%"></i></div><b>9.6</b></div>
+            <div class="score-row"><span>科研潜力</span><div class="bar"><i style="width:88%"></i></div><b>8.8</b></div>
+            <div class="score-row"><span>算法可行</span><div class="bar"><i style="width:82%"></i></div><b>8.2</b></div>
+            <div class="score-row"><span>数据完备</span><div class="bar"><i style="width:55%"></i></div><b>5.5</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="decision">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">Decision · 立项结论</div><h2>值得做，但不是做一个泛化大平台</h2></div>
+          <p>算法实现已不是主要障碍，真正决定成败的是能否取得事件级降雨、河道边界和独立验证资料。建议把课题收缩为一个可验证、可形成行动提前量的县域试点，而不是一开始承诺“全广西 30 m 实时精准水深”。</p>
+        </div>
+        <div class="decision-board">
+          <div class="decision-score"><div><span>客观立项评分</span><strong>7.5</strong><span>/ 10 · 有条件推荐</span></div><span>社会价值高 · 科研窗口存在<br/>数据风险是唯一红线</span></div>
+          <div class="decision-sides">
+            <article class="decision-side"><h3>值得做的版本</h3><ul><li>一个县或 100–500 km² 典型流域</li><li>30 m 全域筛查 + 5 m 重点村精算</li><li>概率水深、到达时间与转移窗口</li><li>至少 3 场历史事件回放与盲测</li><li>联合气象、水文或应急业务单位</li></ul></article>
+            <article class="decision-side"><h3>不值得做的版本</h3><ul><li>只强调 GPU、CA、AI 或高分辨率</li><li>把降雨下推细节当成真实观测</li><li>没有独立水深/范围资料却宣称精准</li><li>全域采用 1–5 m 网格堆算力</li><li>只展示淹没动画，不形成行动结果</li></ul></article>
+          </div>
+        </div>
+        <div class="research-line">推荐核心课题：面向数据稀缺山地村镇的、降雨不确定性驱动的多尺度实时淹没预测与行动决策</div>
+      </div>
+    </section>
+
+    <section id="system">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">02 · 技术路线</div><h2>快模型与精模型协同</h2></div>
+          <p>采用“离线重计算、在线轻计算”的架构：平时完成地形修正、参数率定、极端情景库与代理模型训练；临灾时只更新降雨、水位和状态，利用 GPU 进行局部动态加密及集合推演。</p>
+        </div>
+        <div class="arch">
+          <div class="flow">
+            <div class="node"><div class="node-icon">雨</div><strong>动态降雨场</strong><span>雷达 QPE/QPF · 雨量站 · NWP</span></div>
+            <div class="node"><div class="node-icon">融</div><strong>时空融合</strong><span>偏差订正 · 守恒下推 · 集合生成</span></div>
+            <div class="node"><div class="node-icon">演</div><strong>多尺度推演</strong><span>水文 + CA / 局部浅水方程</span></div>
+            <div class="node"><div class="node-icon">决</div><strong>行动产品</strong><span>转移清单 · 路线 · 工程比选</span></div>
+          </div>
+          <div class="layers">
+            <div class="layer"><b>观测与边界</b><span>天气雷达、站点、卫星、河道水位、水库/闸泵状态、土壤湿度</span><span class="tag">1–10 min 更新</span></div>
+            <div class="layer"><b>静态数字底座</b><span>裸地 DEM、河网断面、建筑/道路、土地覆盖、排水管网与人口脆弱性</span><span class="tag">版本化维护</span></div>
+            <div class="layer"><b>计算核心</b><span>产汇流 + 栅格 CA 快速筛查；重点区域采用 GPU 二维浅水方程精算</span><span class="tag">混合求解</span></div>
+            <div class="layer"><b>同化与校正</b><span>水位计、视频/物联网、遥感水体与群众报灾反校水深和参数</span><span class="tag">滚动重启</span></div>
+            <div class="layer"><b>服务输出</b><span>超过 0.3/0.5/1.0 m 概率、到达时间、断路时刻、转移窗口与安全高地</span><span class="tag">角色化发布</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">03 · 尺度策略</div><h2>30 m 是入口，不是终点</h2></div>
+          <p>30 m DEM 可支撑县域或流域级风险筛查，但一条道路、一座涵洞或几厘米的高程误差都可能改变局部积水。建议用风险驱动的嵌套网格，把算力投向有人、有资产、且结果敏感的位置。</p>
+        </div>
+        <div class="resolution">
+          <article class="res-card"><div class="big">30 m</div><h3>区域快速筛查</h3><p>县域/中小流域，定位洪水走廊、受威胁村落和需要精算的热点。</p><small>适合：0–6 h 集合滚动、极端情景普查</small></article>
+          <article class="res-card featured"><div class="big">5–10 m</div><h3>村镇行动尺度</h3><p>结合道路、房屋和沟渠，估计进村路径、建筑周边水深及撤离通道。</p><small>适合：重点村、乡镇、沿河聚居带</small></article>
+          <article class="res-card"><div class="big">1–2 m</div><h3>局部积水精算</h3><p>依赖激光雷达/实测高程和真实排水管网，解决街巷、院落和下穿通道积水。</p><small>适合：小范围重点设施；不宜直接全域铺开</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="innovation">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">04 · 科研创新</div><h2>创新不只是“用了 GPU”</h2></div>
+          <p>GPU 与元胞自动机属于实现手段。真正可形成论文、算法与业务壁垒的科学问题，是多源不确定性如何跨尺度传递、何时动态加密，以及如何让模型直接服务行动。</p>
+        </div>
+        <div class="innovation">
+          <article class="idea"><div class="label">INNOVATION 01</div><h3>守恒且概率化的降雨下推</h3><p>把粗分辨率预报、雷达外推和站点观测融合为多个高分辨率雨场；约束区域总雨量守恒、雨团运动连续，并保留极端尾部概率，避免“精细化幻觉”。</p></article>
+          <article class="idea"><div class="label">INNOVATION 02</div><h3>事件驱动的多尺度计算</h3><p>利用地形汇流关系和在线风险指标自动触发局部网格加密；低风险区用 CA/简化惯性模型，高风险区切换浅水方程，实现速度—精度可控。</p></article>
+          <article class="idea"><div class="label">INNOVATION 03</div><h3>观测同化与在线参数更新</h3><p>将雨量、水位、视频水尺、遥感水面和群众上报转化为可同化观测，滚动修正初始水量、糙率、入渗与排水状态，降低“第一次算错后一直错”。</p></article>
+          <article class="idea"><div class="label">INNOVATION 04</div><h3>从水深场到行动策略</h3><p>将水深、流速和到达时间映射为道路失效、脆弱人群暴露与撤离可达性，用“提前量—误报代价—漏报风险”联合优化预警阈值。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">05 · 极端推演</div><h2>回答“承受到哪里会失守”</h2></div>
+          <p>低洼区不存在单一、固定的“降雨承受量”：同样 100 mm，1 小时集中降下与 24 小时均匀降下完全不同，上游来水、前期土壤湿度和泵站失效也会改变结论。</p>
+        </div>
+        <div class="scenario-grid">
+          <div class="scenario-list">
+            <div class="scenario-item"><i>A</i><div><b>设计暴雨与历史重现</b><p>不同历时、重现期、雨峰位置和移动方向。</p></div></div>
+            <div class="scenario-item"><i>B</i><div><b>复合极端</b><p>暴雨 + 上游洪水 + 高河水位 + 设施失效。</p></div></div>
+            <div class="scenario-item"><i>C</i><div><b>干预组合</b><p>沟渠、涵洞、泵站、滞蓄区、道路与避让搬迁。</p></div></div>
+            <div class="scenario-item"><i>D</i><div><b>鲁棒性检验</b><p>在多种雨型和参数下仍有效，才推荐投资。</p></div></div>
+          </div>
+          <div class="matrix">
+            <h3>干预措施的正确评价方式</h3>
+            <table>
+              <thead><tr><th>措施</th><th>主要作用</th><th>必须检查的副作用</th></tr></thead>
+              <tbody>
+                <tr><td>扩挖沟渠/涵洞</td><td>加快局地排水</td><td>下游洪峰增大、冲刷与堵塞</td></tr>
+                <tr><td>滞蓄空间/湿地</td><td>削峰、延迟洪峰</td><td>占地、淤积、超标溢流路径</td></tr>
+                <tr><td>泵站与闸门</td><td>主动排水与隔离倒灌</td><td>停电、设备故障、外河顶托</td></tr>
+                <tr><td>抬高/设防</td><td>保护关键道路与建筑</td><td>阻水并把积水推向邻区</td></tr>
+                <tr><td>避让搬迁</td><td>消除长期高风险暴露</td><td>社会成本与实施周期，但对不可治理点更可靠</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="delivery">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">06 · 实施与难度</div><h2>先做一县一流域，再复制</h2></div>
+          <p>建议以有历史洪痕、雷达覆盖和水位站的典型县为试点。首期目标不是宣称“精准预报所有积水”，而是证明系统能稳定快于实况演进、能量守恒、误差可量化，并能给基层留下行动时间。</p>
+        </div>
+        <div class="roadmap">
+          <article class="phase"><h3>底座与基线</h3><p>0–3 个月：数据盘点、DEM 水文修正、历史事件库、CPU/GPU 基线模型。</p></article>
+          <article class="phase"><h3>核心算法</h3><p>4–7 个月：雨场融合、混合求解器、集合模拟、关键点传感接入。</p></article>
+          <article class="phase"><h3>回放与校准</h3><p>8–10 个月：典型洪水盲测，卫星/水位/洪痕验证，修正预警阈值。</p></article>
+          <article class="phase"><h3>汛期试运行</h3><p>11–15 个月：影子运行、乡镇演练、失败保护与业务评估。</p></article>
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong>&lt; 5 min</strong><span>单个重点区一次滚动更新目标</span></div>
+          <div class="metric"><strong>10–30 min</strong><span>村镇级有效转移提前量目标</span></div>
+          <div class="metric"><strong>≥ 20</strong><span>每轮降雨—参数集合成员</span></div>
+          <div class="metric"><strong>可校准</strong><span>概率产品可靠度优先于单次命中</span></div>
+        </div>
+        <div class="matrix" style="margin-top:18px">
+          <h3>工程难度清单</h3>
+          <table>
+            <thead><tr><th>环节</th><th>难度</th><th>原因与对策</th></tr></thead>
+            <tbody>
+              <tr><td>基础数据与接口</td><td class="hard">高</td><td>高精 DEM、断面、管网与实时雷达常有授权、质量和接口壁垒；优先签订数据清单与 SLA。</td></tr>
+              <tr><td>模型稳定与速度</td><td class="medium">中高</td><td>干湿边界、陡坡、涵洞和复杂地物易造成数值问题；采用分层模型、预计算与 GPU 批量集合。</td></tr>
+              <tr><td>率定与验证</td><td class="hard">高</td><td>乡村常缺水深过程观测；增设低成本水尺/相机，系统化收集洪痕和灾后影像。</td></tr>
+              <tr><td>业务可靠性</td><td class="hard">高</td><td>断网断电、迟到数据与模型漂移不可避免；需降级模式、审计日志、人工会商和本地预警兜底。</td></tr>
+              <tr><td>前端与可视化</td><td>中</td><td>地图技术不难，难在把概率、提前量和责任链表达清楚；按指挥员、村干部、居民分别设计。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warning"><strong>使用边界：</strong>系统只能作为会商和行动支持，不能替代法定气象/水文预警，也不能仅凭模型水深自动下达撤离命令。高风险时应遵循“宁可提前转移”，并保留声光报警、铜锣、人工巡查等现地冗余。</div>
+      </div>
+    </section>
+
+    <section id="data">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">07 · 数据策略</div><h2>数据不是没有，而是开放级别不匹配</h2></div>
+          <p>公开数据足以启动历史筛查和方法原型，却不足以支撑村镇级“精准验证”。最优路线是用公开数据先完成可运行基线，同时以试点合作换取广西气象、水文、应急和自然资源部门的事件级资料，并从项目第一天建立自有验证体系。</p>
+        </div>
+
+        <div class="data-hero">
+          <div class="data-claim"><strong>关键判断</strong><p>不要把“上网能下载什么”当成数据上限。公开资料解决启动问题；省级业务站网和历史档案解决精度问题；自建水尺、相机与洪痕流程解决长期可验证问题。</p></div>
+          <div class="data-facts">
+            <div class="data-fact"><b>0.01°</b><span>CMA 雷达降水估测图像产品；1 h 分辨率、约 6 min 更新，公开页面主要覆盖近 24 h</span></div>
+            <div class="data-fact"><b>0.0625°</b><span>CLDAS 中国区域小时分析，可提供降水与多层土壤湿度背景</span></div>
+            <div class="data-fact"><b>18,632+</b><span>广西公开案例所述已接入的气象、山洪和水文站点量级；说明数据存在，但需合作授权</span></div>
+          </div>
+        </div>
+
+        <div class="matrix scroll">
+          <h3>可用数据源与正确用途</h3>
+          <table>
+            <thead><tr><th>数据层</th><th>候选数据</th><th>时空尺度</th><th>获取方式</th><th>适合解决</th><th>不能解决</th></tr></thead>
+            <tbody>
+              <tr><td>雷达/站网降雨</td><td><a href="https://k.data.cma.cn/mekb/?dataCode=J.0017.0009.S002&amp;r=data%2Fdetail">CMA 雷达降水估测</a>、区域自动站、雷达基数据</td><td>公开产品 0.01°、1 h，约 6 min 更新；基数据可更细</td><td><span class="access partner">实名/合作</span></td><td>事件级降雨主数据、雨团移动、局地峰值</td><td>公开近 24 h 页面不是历史数值档案；长期回溯须正式申请</td></tr>
+              <tr><td>陆面融合</td><td><a href="https://k.data.cma.cn/mekb/?dataCode=NAFP_CLDAS2.0_RT&amp;r=data%2Fdetail">CLDAS-V2.0</a></td><td>0.0625°、1 h；含降水和多层土壤湿度</td><td><span class="access partner">注册/授权</span></td><td>前期土壤状态、降雨总量约束、雷达缺测补充</td><td>约 6 km 网格不能还原村内暴雨细节</td></tr>
+              <tr><td>广西业务站网</td><td>气象站、山洪站、水文站、水库/闸泵过程</td><td>分钟至小时、点位观测</td><td><span class="access partner">部门合作</span></td><td>真实雨量、水位/流量过程、边界条件和业务验证</td><td>通常无公开批量接口；需明确使用、保密和成果回馈</td></tr>
+              <tr><td>卫星降雨</td><td><a href="https://gpm.nasa.gov/data/imerg">NASA GPM IMERG V07</a>、JAXA GSMaP</td><td>IMERG 0.1°、30 min；GSMaP 0.1°、1 h</td><td><span class="access open">公开</span></td><td>无站区补洞、事件时序背景、跨源集合成员</td><td>约 10 km，强对流峰值和山地降雨偏差可能较大；不能直接下采样到 30 m</td></tr>
+              <tr><td>再分析/土壤</td><td><a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview">ERA5-Land</a></td><td>0.1°、1 h，1950 至今</td><td><span class="access open">公开</span></td><td>前期湿润状态、长期背景和缺测事件补充</td><td>模型再分析不是局地雨量真值</td></tr>
+              <tr><td>洪水范围</td><td><a href="https://global-flood.emergency.copernicus.eu/react/technical-information/glofas-gfm/">CEMS Global Flood Monitoring</a></td><td>Sentinel-1 SAR，20 m，不规则过境快照</td><td><span class="access open">公开</span></td><td>云下洪水范围、模型空间验证、受淹地类</td><td>不是连续过程，常错过山洪峰值；树林、建筑和陡坡有漏检</td></tr>
+              <tr><td>水体分类</td><td><a href="https://data.nasa.gov/dataset/opera-dynamic-surface-water-extent-from-sentinel-1-version-1-5d63c">NASA OPERA DSWx-S1</a></td><td>30 m、约 6–12 d；2024-09 起</td><td><span class="access open">公开</span></td><td>近期事件水面与置信度图层</td><td>只给过境时刻水面；通常不直接给水深</td></tr>
+              <tr><td>全球水文背景</td><td><a href="https://ewds.climate.copernicus.eu/datasets/cems-glofas-historical?tab=overview">GloFAS v4</a>、<a href="https://www.hydrodata.cn/">HydroDATA</a></td><td>GloFAS 0.05°、日尺度；模型估计</td><td><span class="access open">公开</span></td><td>流量数量级、无资料流域先验和合理性检查</td><td>不能作为小河沟或村镇水位的独立真值</td></tr>
+              <tr><td>现场证据</td><td>RTK 洪痕、视频水尺、无人机、照片、道路封闭与转移记录</td><td>厘米至米、点/线/面、带时间戳</td><td><span class="access">自采/协作</span></td><td>峰值水位、局部水深、到达/退水时间和模型验证</td><td>若无坐标、高程基准、时间和误差等级，证据价值会大幅下降</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warning"><strong>最优获取顺序：</strong>第一优先是与广西气象局/自治区水文中心签订试点数据协议，索取事件窗口内的雷达基数据或 QPE、区域站分钟/小时雨量、水位流量过程及水库闸泵记录；第二优先才是 IMERG、CLDAS、ERA5-Land 等公开替代品。广西现有业务平台已汇集大量气象、山洪和水文站数据，问题主要是授权和部门协同，不是观测完全不存在。</div>
+      </div>
+    </section>
+
+    <section id="reconstruction">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">08 · 灾害重建</div><h2>还原“最可能过程”，而不是伪造唯一真相</h2></div>
+          <p>一次历史洪灾可以用多源证据和水动力反演重建，但严格意义上得到的是后验集合：每个时刻的水深中位数、5%–95% 区间和证据可信度。只有当降雨、水位和视频时间序列足够完整时，才可能接近连续全过程。</p>
+        </div>
+
+        <div class="rebuild">
+          <article class="rebuild-step"><h3>建立事件档案</h3><p>确定北京时间起止、受影响流域、警报/断路/转移时间，统一坐标、时区和高程基准。</p></article>
+          <article class="rebuild-step"><h3>重建集合降雨</h3><p>站点校准雷达 QPE；卫星和 CLDAS 补洞；扰动雨峰位置、强度和时间，生成守恒的多成员雨场。</p></article>
+          <article class="rebuild-step"><h3>补齐初始与边界</h3><p>用前期土壤湿度、水库调度、上游水位/流量和下游顶托确定事件启动状态。</p></article>
+          <article class="rebuild-step"><h3>制作证据表</h3><p>每条洪痕、视频、照片和 SAR 水面记录坐标、时刻、数值、来源、垂直基准和误差等级。</p></article>
+          <article class="rebuild-step"><h3>集合反演</h3><p>联合调整降雨偏差、入渗、糙率、涵洞能力和边界流量，使模型同时符合水位过程、洪痕与水面范围。</p></article>
+          <article class="rebuild-step"><h3>独立验证</h3><p>保留部分站点/村落不参与率定；检验水深、到达时间、淹没范围和退水过程，输出不确定性而非单次最优图。</p></article>
+        </div>
+
+        <div class="scenario-grid" style="margin-top:18px">
+          <div class="matrix scroll">
+            <h3>不同证据能够还原什么</h3>
+            <table style="min-width:620px">
+              <thead><tr><th>证据</th><th>可恢复</th><th>关键限制</th></tr></thead>
+              <tbody>
+                <tr><td>河道水位/流量站</td><td>点位完整涨落过程、洪峰和传播时间</td><td>站点之外仍依赖模型；注意评级曲线和高洪外推</td></tr>
+                <tr><td>带时间戳视频/CCTV</td><td>固定点连续水深和到达/退水时间</td><td>需相机标定或轮胎、路缘、门槛等已知尺寸参照物</td></tr>
+                <tr><td>RTK 洪痕</td><td>峰值水面高程</td><td>通常没有峰值时刻；应在清理和降雨破坏前尽快测量</td></tr>
+                <tr><td>Sentinel-1/SAR 水面</td><td>卫星过境时刻的淹没范围</td><td>不是水深，且可能错过短历时山洪峰值</td></tr>
+                <tr><td>无人机影像</td><td>灾后微地形、冲淤、洪痕线和受损范围</td><td>需要像控点/RTK 和合法飞行；灾后影像不等于峰值范围</td></tr>
+                <tr><td>新闻、居民照片和访谈</td><td>关键时间锚点、局部水深等级和受灾地点</td><td>时间、位置与参照尺寸必须交叉核验，不能单独作为精确真值</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="callout"><h3>洪痕采集要点</h3><p>优先记录墙面泥线、细小种子/漂浮物沉积线和稳定结构上的水渍；每点拍远景、近景和标尺照片，用 RTK/GNSS 测量水面高程，记录痕迹类型、质量等级和垂直基准。同一水面尽量保留 2–3 个独立洪痕。</p></div>
+            <div class="warning"><strong>视频可补过程：</strong>已有研究表明，利用车轮、交通桶等已知尺寸参照物可以从视频估计积水深度。对本项目最实际的做法，是预先在重点村道路、桥涵和低洼点安装带刻度水尺与定时拍摄相机。</div>
+          </div>
+        </div>
+
+        <div class="quality-grid">
+          <div class="quality"><b>A 级：可重建过程</b><p>雷达+雨量站、至少一个水位过程、带时刻视频、若干洪痕/SAR 快照。可形成小时至分钟级后验水深过程。</p></div>
+          <div class="quality"><b>B 级：可重建峰值与大致时序</b><p>IMERG/CLDAS、少量站点、洪痕、卫星范围和官方时间线。可验证峰值范围，但时间过程不确定性较大。</p></div>
+          <div class="quality"><b>C 级：只能定性复盘</b><p>仅有新闻、零散照片或单张卫星图。可以确定受灾点和数量级，不足以声称精确水深或用于模型验收。</p></div>
+        </div>
+
+        <div class="matrix" style="margin-top:18px">
+          <h3>建议的 90 天数据攻关</h3>
+          <table>
+            <thead><tr><th>阶段</th><th>任务</th><th>硬性退出条件</th></tr></thead>
+            <tbody>
+              <tr><td>0–30 天</td><td>选择一个试点流域；向气象、水文、应急列出字段级申请清单；盘点 3 场候选事件及卫星过境。</td><td>找不到任何站点过程或合作单位时，暂停业务化承诺。</td></tr>
+              <tr><td>31–60 天</td><td>完成一场事件的降雨集合、河道边界、洪痕/视频证据库；建立洪痕采集 SOP 与自有相机点。</td><td>只能获得日累计雨量和新闻图片时，只做方法原型，不做精度验收。</td></tr>
+              <tr><td>61–90 天</td><td>完成首次集合反演；留出独立观测进行盲测；报告水深/范围/到达时间误差和 5%–95% 区间。</td><td>模型无法同时解释水位、洪痕和范围时，先修正数据/物理过程，不进入实时系统开发。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">09 · Proposal 摘要</div><h2>拟解决的核心课题</h2></div>
+          <p><strong>项目名称：</strong>面向广西村镇洪涝的多尺度实时降雨—淹没预测与极端情景决策系统。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><h3>总体目标</h3><p>研发可在分钟级滚动运行的概率化淹没推演系统，形成 30 m 区域筛查、5–10 m 村镇模拟和 1–2 m 重点设施精算能力，为人员转移与工程改造提供量化依据。</p></article>
+          <article class="card"><h3>主要成果</h3><ul><li>动态降雨场融合与集合生成算法</li><li>GPU 多尺度洪涝求解器</li><li>极端情景与干预措施评估平台</li><li>试点区风险图、阈值和转移清单</li></ul></article>
+          <article class="card"><h3>验收原则</h3><ul><li>速度：在目标硬件满足滚动时限</li><li>可信：历史事件盲测并量化不确定性</li><li>有用：风险结果能映射到人、路、设施</li><li>可运维：断流降级、版本追踪、人工接管</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources">
+      <div class="shell">
+        <div class="eyebrow">Evidence & references</div>
+        <h2 style="font-size:30px">依据与延伸阅读</h2>
+        <ol>
+          <li>中国气象局气象探测中心：2025 年 7 月台风“韦帕”期间，华南出现雷达 1 h 定量估测降水超过 50 mm，广西局地大气可降水量超过 75 mm。<a href="https://www.cma.gov.cn/ztbd/2025zt/2025tf/202506/tpxw/202507/t20250721_7224807.html">原文</a></li>
+          <li>中国天气网分钟级降水产品：雷达外推未来两小时、逐分钟预报、约 6 分钟更新，可作为短临数据形态参考；实际科研/业务接入需另行落实授权接口。<a href="https://m.weather.com.cn/screen/rain_index_online.html">产品说明</a></li>
+          <li>Liu 等：基于元胞自动机的二维城市洪涝模型可在常见基础地理数据上模拟入渗、雨水口排放和淹没过程，说明 CA 适合快速过程模拟。<a href="https://nhess.copernicus.org/articles/15/381/2015/">NHESS, 2015</a></li>
+          <li>Shaw 等：LISFLOOD-FP 8.2 将 GPU、多小波动态分辨率与二维浅水方程求解结合，支持快速、多尺度洪水模拟。<a href="https://gmd.copernicus.org/articles/18/9827/2025/">GMD, 2025</a></li>
+          <li>Copernicus DEM GLO-30 约 30 m，但为表面高程，在植被与建筑区并不等于裸地地形；因此局部洪涝仍需更高精度 DTM 与地物修正。<a href="https://essd.copernicus.org/articles/16/3433/2024/">ESSD, 2024</a></li>
+          <li>Mason 等：集合淹没图能表达位置相关的洪涝概率，并可用遥感观测检验集合离散度与预报技巧的关系。<a href="https://nhess.copernicus.org/articles/23/2769/2023/">NHESS, 2023</a></li>
+          <li>水利部 2025 年山洪防御部署强调“云中雨、落地雨、河中水”三道防线、动态阈值、县乡村预案与转移闭环，与本项目的业务落点一致。<a href="https://www.tba.gov.cn/slbthlyglj/gzqkk/content/01919ee1-9e0d-4814-9665-57d5a62404dc.html">政策原文</a></li>
+          <li>水利部防御体系指导意见提出基于预报进行正向预演、基于调度目标逆向推演，并让预报与调度动态交互耦合。<a href="https://www.tba.gov.cn/slbthlyglj/slbgzjgfxwj/content/5b740849-c8b3-4d5d-b6a5-40cd804c4102.html">政策原文</a></li>
+          <li>中国气象局雷达资料服务：雷达组网降水估测图像产品空间分辨率为 0.01°，时间分辨率 1 h，约每 6 min 更新；公开页面主要为近 24 h，历史数值资料需进一步申请。<a href="https://k.data.cma.cn/mekb/?dataCode=J.0017.0009.S002&amp;r=data%2Fdetail">数据说明</a></li>
+          <li>CLDAS-V2.0：0.0625°、小时分辨率，融合国家站、区域站和卫星资料，提供降水及多层土壤湿度，可作为事件初始状态与缺测背景。<a href="https://k.data.cma.cn/mekb/?dataCode=NAFP_CLDAS2.0_RT&amp;r=data%2Fdetail">数据说明</a></li>
+          <li>广西水利数字化案例显示，相关平台已汇集 2663 个气象站、11709 个山洪站和 4247 个水文站监测数据，表明项目关键在部门数据合作与授权。<a href="https://gxt.gxzf.gov.cn/wzsy/tzgg_6719901/tzgg/P020251202564202970522.pdf">案例材料</a></li>
+          <li>NASA IMERG V07 将多卫星降水合成为 0.1°、半小时数据，适合无站区补充，但 NASA 明确提示更细时间/空间重网格可能压低峰值或扩展雨区。<a href="https://gpm.nasa.gov/data/imerg">产品说明</a></li>
+          <li>Copernicus ERA5-Land 提供 1950 年以来 0.1°、小时陆面再分析，包括降水和土壤层变量；它是模型再分析而非局地观测真值。<a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview">数据说明</a></li>
+          <li>CEMS Global Flood Monitoring 自动处理 Sentinel-1 SAR 并用三个算法生成近实时洪水范围及一致度，可用于空间验证。<a href="https://global-flood.emergency.copernicus.eu/react/technical-information/glofas-gfm/">产品说明</a></li>
+          <li>NASA OPERA DSWx-S1 自 2024 年 9 月起提供近全球 30 m 动态水面分类和置信度图层，重访约 6–12 天。<a href="https://data.nasa.gov/dataset/opera-dynamic-surface-water-extent-from-sentinel-1-version-1-5d63c">数据说明</a></li>
+          <li>USGS 洪痕指南强调洪痕易消失，应尽早识别、评级、拍照并测量高程；高质量洪痕可用于峰值验证、间接流量估计和淹没建模。<a href="https://www.usgs.gov/publications/identifying-and-preserving-high-water-mark-data">技术指南</a></li>
+          <li>Gao 等展示了以车轮、轮毂和交通桶等参照物从视频估计积水深度的方法，说明既有监控可以转化为低成本水深过程观测。<a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jfr3.12948">Journal of Flood Risk Management, 2024</a></li>
+          <li>已有研究使用群众照片提取的分布式水位校准 LISFLOOD-FP，也有工作将社交媒体观测通过集合卡尔曼滤波同化进二维洪水模型，支持多源证据反演路线。<a href="https://www.sciencedirect.com/science/article/abs/pii/S002216942201037X">J. Hydrology</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row"><span>雨洪智演 · 精简研究与工程建议书</span><span>版本 1.0 · 2026-08-02</span></div>
+  </footer>
+</body>
+</html>

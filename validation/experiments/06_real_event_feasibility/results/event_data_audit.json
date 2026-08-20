@@ -1,0 +1,39 @@
+{
+  "status": "data_audit_completed_simulation_blocked",
+  "simulation_blocker": "Current RainFall lacks river-channel geometry and prescribed stage/discharge boundaries; these observations are not compared to a fabricated simulation.",
+  "sites": {
+    "05485605": {
+      "records": 480,
+      "start_local": "2018-06-29T00:00:00",
+      "end_local": "2018-07-03T23:45:00",
+      "peak_discharge_cfs": 10000.0,
+      "peak_discharge_datetime_local": "2018-07-01T01:00:00",
+      "peak_gage_height_ft": 16.17,
+      "peak_gage_datetime_local": "2018-07-01T01:00:00",
+      "all_values_approved": true
+    },
+    "05485640": {
+      "records": 480,
+      "start_local": "2018-06-29T00:00:00",
+      "end_local": "2018-07-03T23:45:00",
+      "peak_discharge_cfs": 12000.0,
+      "peak_discharge_datetime_local": "2018-07-01T05:15:00",
+      "peak_gage_height_ft": 17.51,
+      "peak_gage_datetime_local": "2018-07-01T05:15:00",
+      "all_values_approved": true
+    }
+  },
+  "high_water_marks": {
+    "table_rows": 16,
+    "locations_with_elevation": 12,
+    "surveyed_bridge_locations": 11,
+    "recorded_stage_locations": 1,
+    "vertical_datum": "NAVD 88",
+    "source": "USGS OFR 2021-1044 Table 3"
+  },
+  "source": {
+    "path": "data/raw/usgs_nwis_05485605_05485640_2018.tsv",
+    "sha256": "fa89da9aeb499b23afe4b46783ce3050ac808fc80910095b243347e44492e862",
+    "retrieval_url": "https://waterservices.usgs.gov/nwis/iv/?format=rdb&sites=05485605,05485640&startDT=2018-06-29&endDT=2018-07-03&parameterCd=00060,00065&siteStatus=all"
+  }
+}

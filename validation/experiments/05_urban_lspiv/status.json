@@ -1,0 +1,20 @@
+{
+  "experiment": "05_urban_lspiv",
+  "status": "PARTIAL_EXECUTED_DIAGNOSTIC_NOT_FORMAL_VALIDATION",
+  "data_download": "COMPLETE_LIGHTWEIGHT_ONLY",
+  "archive_integrity": "PASS_4_OF_4_ZENODO_FILES",
+  "extraction": "PASS_44_FILES",
+  "hdf5_audit": "PASS_WITH_COMPARABILITY_CAUTIONS",
+  "dataset1_stored_test_groups_including_repeats": 128,
+  "dataset2_configurations": 8,
+  "ref_baseline": "EXECUTED_20_SECONDS_6269_STEPS",
+  "raw_video_downloaded": false,
+  "formal_validation_complete": false,
+  "blockers": [
+    "Production RainFall supports a square rainfall-driven domain and one south outlet, but this steady flume needs a rectangular masked domain, three prescribed inflows, and three fixed stages.",
+    "LSPIV observes surface velocity while RainFall predicts depth-averaged velocity; no validated observation operator is yet available.",
+    "The executed baseline is 20 s and uncalibrated; steady-state/grid/parameter convergence has not been demonstrated.",
+    "Boundary label placement inferred from the geometry still needs publication-stage cross-checking against the original labelled figure."
+  ],
+  "primary_result": "results/ref_baseline_metrics.json"
+}

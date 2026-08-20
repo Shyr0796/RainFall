@@ -1,0 +1,9 @@
+{
+  "data_download": "COMPLETE_AND_ZIP_TESTED",
+  "archive_sha256": "388c2789570e5975fe909033e34bedbe5d7bde5e6d7f9b7d7c1eaf04e58bc732",
+  "data_audit": "COMPLETE_8_NESTED_ARCHIVES_8_DEM_GRIDS",
+  "test1_run": "COMPLETED_WITH_EXPERIMENT_STAGE_BOUNDARY",
+  "evidence_class": "standard numerical benchmark, not observations",
+  "core_api_stage_boundary": "NOT_IMPLEMENTED_EXPERIMENT_WRAPPER_ONLY",
+  "result_metrics": "results/test1_metrics.json"
+}

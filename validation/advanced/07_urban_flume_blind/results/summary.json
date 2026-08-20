@@ -1,0 +1,53 @@
+{
+  "status": "PARTIAL_BLIND_PROTOCOL_EXECUTED_NOT_FORMAL_VALIDATION",
+  "calibration_configs": [
+    "CO",
+    "CE",
+    "Ref"
+  ],
+  "blind_configs_planned": [
+    "Px5",
+    "Py5",
+    "BU",
+    "BS",
+    "BD"
+  ],
+  "blind_configs_executed": [
+    "Px5",
+    "Py5",
+    "BU",
+    "BS"
+  ],
+  "blind_configs_blocked": [
+    "BD"
+  ],
+  "selected_manning_n": 0.02,
+  "surface_to_depth_average_operator_alpha": 1.1561355139936855,
+  "selection_objective": "mean(depth_MAE/0.002 + outlet_partition_TV/0.05) over CO, CE, Ref",
+  "blind_aggregate": {
+    "inlet_depth_mae_m_mean": 0.003935558280486164,
+    "outlet_partition_total_variation_mean": 0.21925195938179443,
+    "surface_speed_rmse_m_s_mean": 0.10627890484499222,
+    "direction_mae_deg_mean": 31.98310412484259,
+    "mass_error_fraction_max": 1.2132187687690373e-07,
+    "mean_depth_last10s_range_m_max": 0.01686707004093381
+  },
+  "pre_registered_threshold_checks": {
+    "inlet_depth_mae_le_0p002_m": false,
+    "outlet_partition_tv_le_0p05": false,
+    "direction_mae_le_20_deg": false,
+    "last10s_depth_range_le_0p0005_m": false,
+    "mass_error_fraction_le_1e_4": true
+  },
+  "formal_claim_gate": {
+    "pass": false,
+    "reasons": [
+      "BD cannot be reconstructed from non-zero LSPIV cells at outlet 2, so the fifth blind geometry was not run.",
+      "Inlet depth is sampled at the computational opening rather than the exact ultrasonic gauge coordinate.",
+      "The surface/depth-average velocity operator was calibrated empirically and requires uncertainty analysis.",
+      "The adapter is experiment-local and not yet the production RainFall solver.",
+      "The four executed blind configurations fail the depth, outlet-partition, direction and steady-state thresholds; only mass conservation passes.",
+      "The selected Manning value lies at the upper edge of the search range, indicating unresolved calibration identifiability."
+    ]
+  }
+}

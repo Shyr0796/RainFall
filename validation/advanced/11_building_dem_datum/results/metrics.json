@@ -1,0 +1,115 @@
+{
+  "status": "COMPLETED_OFFICIAL_DATA_COUPLING_DIAGNOSTIC",
+  "formal_hydrodynamic_event_validation": false,
+  "official_building_features": 752,
+  "building_height_m": {
+    "minimum": 2.4384000301361084,
+    "median": 20.860395431518555,
+    "maximum": 83.51519775390625
+  },
+  "vertical_contract": {
+    "source_dem_crs": "EPSG:6539",
+    "solver_crs": "EPSG:26918",
+    "dem_vertical_datum": "NAVD88",
+    "dem_vertical_unit": "US survey foot",
+    "building_ground_datum": "NAVD88 where modern/photogrammetric",
+    "building_attribute_unit": "foot",
+    "roof_formula": "z_roof_m = z_dem_m + HEIGHTROOF_ft * 0.3048",
+    "hydraulic_terrain": "bare-earth DEM outside solid building mask"
+  },
+  "ground_cross_check": {
+    "features": 752,
+    "mean_signed_error_m": -1.0869625134670988,
+    "median_signed_error_m": -0.9983444213867188,
+    "mae_m": 1.120191418110056,
+    "p95_absolute_error_m": 2.607651805877683,
+    "maximum_absolute_error_m": 6.436567306518555,
+    "within_0_5_m_fraction": 0.26063829787234044,
+    "within_1_m_fraction": 0.5013297872340425,
+    "within_2_m_fraction": 0.8683510638297872
+  },
+  "ground_attribute_accepted_as_dem_replacement": false,
+  "ground_rejection_reason": "The independent building ground field differs from the 2017 bare-earth DEM by more than a defensible sub-metre gate for many features; retain the DEM as terrain and use the field only as QC.",
+  "wrong_coupling_controls": {
+    "feet_treated_as_metres_median_roof_excess_m": 47.57921600341797,
+    "relative_height_treated_as_absolute_median_roof_error_m": -26.5732364654541
+  },
+  "roof_formula_max_absolute_error_m": 7.62939453125e-06,
+  "hydraulic_height_invariance": {
+    "patch_origin_row_col": [
+      139,
+      285
+    ],
+    "patch_shape": [
+      96,
+      96
+    ],
+    "building_cells": 6669,
+    "maximum_depth_difference_m": 0.0,
+    "maximum_qx_difference_m2_s": 0.0,
+    "maximum_qy_difference_m2_s": 0.0,
+    "pass": true,
+    "interpretation": "With a solid building mask, roof height is visualization/QC metadata and cannot silently alter the hydraulic solution."
+  },
+  "resolution_sensitivity": [
+    {
+      "resolution_m": 1.0,
+      "building_cells": 245093,
+      "building_area_m2": 245093.0,
+      "area_difference_vs_1m_m2": 0.0,
+      "area_relative_difference_vs_1m": 0.0
+    },
+    {
+      "resolution_m": 2.0,
+      "building_cells": 61203,
+      "building_area_m2": 244812.0,
+      "area_difference_vs_1m_m2": -281.0,
+      "area_relative_difference_vs_1m": -0.0011465035721134427
+    },
+    {
+      "resolution_m": 5.0,
+      "building_cells": 9808,
+      "building_area_m2": 245200.0,
+      "area_difference_vs_1m_m2": 107.0,
+      "area_relative_difference_vs_1m": 0.00043656897585814367
+    }
+  ],
+  "gates": {
+    "explicit_crs_and_units": true,
+    "same_named_vertical_datum": true,
+    "no_missing_or_fallback_height": true,
+    "relative_roof_formula_exact": true,
+    "solid_mask_height_invariance": true,
+    "building_ground_matches_dem_within_1m_p95": false
+  },
+  "source_hashes": {
+    "noaa_dem_tile_sha256": "d66b19ab0a3b643a2ad683a48f020ddbeb77e00fdf20a32755d30610c9729498",
+    "official_buildings_geojson_sha256": "220accdf2ec43bbe21fca9acecdb5f27fb5fe939424b83e5d75b62c2449fe2f1",
+    "clipped_dem_sha256": "35a66c80d43fdfa2cd17b30a39180824e4416687635ddceb81ac18b5ff7e4498"
+  },
+  "domain_grid": {
+    "crs": "EPSG:26918",
+    "transform": [
+      1.0,
+      0.0,
+      587270.8323725564,
+      0.0,
+      -1.0,
+      4517666.8918483015
+    ],
+    "width": 919,
+    "height": 1182,
+    "cell_size_x_m": 1.0,
+    "cell_size_y_m": 1.0,
+    "bounds": [
+      587270.8323725564,
+      4516484.8918483015,
+      588189.8323725564,
+      4517666.8918483015
+    ],
+    "source_dem": "/home/shyr/workspace/RainFall/validation/advanced/11_building_dem_datum/data/processed/noaa_dem_aoi_ft.tif",
+    "source_buildings": "/home/shyr/workspace/RainFall/validation/advanced/11_building_dem_datum/data/processed/nyc_buildings_height.shp"
+  },
+  "implementation_gates_pass": true,
+  "data_interchangeability_gate_pass": false
+}

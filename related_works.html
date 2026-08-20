@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RainFall 项目创新性与 Related Works 文献调研" />
+  <title>RainFall · 创新性与 Related Works 调研</title>
+  <style>
+    :root {
+      --ink:#112521; --muted:#5d6f69; --paper:#f4f5ef; --card:#ffffff;
+      --line:#d8ddd4; --green:#0b6b52; --mint:#d7eee5; --amber:#e39732;
+      --red:#b3493d; --navy:#173c48; --soft:#e9eee8; --shadow:0 18px 50px rgba(25,50,42,.09);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.72;overflow-x:hidden}
+    a{color:var(--green);text-decoration:none} a:hover{text-decoration:underline}
+    .shell{width:min(1180px,calc(100% - 40px));margin:auto}
+    .top{position:sticky;top:0;z-index:10;background:rgba(244,245,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .top .shell{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:20px}
+    .brand{font-weight:850;letter-spacing:.02em;color:var(--ink)}
+    nav{display:flex;gap:20px;overflow:auto;white-space:nowrap;font-size:14px} nav a{color:var(--muted)}
+    .hero{padding:76px 0 54px;background:radial-gradient(circle at 80% 20%,#cce7dc 0,transparent 34%),linear-gradient(145deg,#f8f8f4,#ecf0e8)}
+    .eyebrow{color:var(--green);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+    h1{font-size:clamp(40px,7vw,78px);line-height:1.02;letter-spacing:-.055em;margin:16px 0 20px;max-width:940px;overflow-wrap:anywhere;word-break:break-word}
+    .lead{font-size:clamp(18px,2.4vw,24px);max-width:900px;color:#334d45;margin:0}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.pill{border:1px solid #b9c9c1;background:rgba(255,255,255,.65);padding:7px 12px;border-radius:99px;font-size:13px}
+    section{padding:64px 0}.section-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:38px;align-items:end;margin-bottom:30px}
+    h2{font-size:clamp(30px,4vw,48px);line-height:1.14;letter-spacing:-.035em;margin:8px 0;overflow-wrap:anywhere;word-break:break-word} h3{line-height:1.25;margin:0 0 10px}
+    .section-head p{color:var(--muted);margin:0}
+    .verdict{background:var(--ink);color:white;border-radius:24px;padding:34px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
+    .verdict h2{color:white;margin-top:0}.verdict p{color:#d2e0db}.verdict strong{color:#9de1c5}
+    .score-ring{width:180px;height:180px;border-radius:50%;background:conic-gradient(#e6a33f 0 62%,#39534b 62%);display:grid;place-items:center;margin:auto}
+    .score-ring:after{content:"组合创新\A 中等";white-space:pre;text-align:center;display:grid;place-items:center;width:132px;height:132px;background:var(--ink);border-radius:50%;font-weight:850;font-size:20px;line-height:1.2}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(27,49,42,.04)}
+    .card p{color:var(--muted);margin:8px 0 0}.stat strong{display:block;font-size:38px;color:var(--green);line-height:1}.stat span{font-size:13px;color:var(--muted)}
+    .callout{border-left:5px solid var(--amber);background:#fff8ea;border-radius:12px;padding:18px 20px;margin:22px 0}
+    .matrix-wrap{overflow:auto;background:white;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+    table{border-collapse:collapse;width:100%;min-width:850px;font-size:14px}th,td{padding:14px 15px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{background:#edf1ec;color:#3e5550;position:sticky;top:64px}tr:last-child td{border-bottom:0}
+    .bar{height:8px;background:#e3e8e2;border-radius:99px;min-width:100px;margin-top:7px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--red));border-radius:99px}
+    .tag{display:inline-flex;padding:3px 8px;border-radius:99px;background:var(--soft);font-size:12px;margin:2px}.tag.high{background:#f4d8d2;color:#8f3128}.tag.mid{background:#f8e7c8;color:#865d20}.tag.good{background:var(--mint);color:#145943}
+    .innovation-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.idea{background:white;border:1px solid var(--line);border-radius:18px;padding:24px;position:relative;overflow:hidden}.idea:before{content:attr(data-score);position:absolute;right:18px;top:12px;font-size:38px;font-weight:900;color:#dce5df}.idea p{color:var(--muted)}.idea ul{padding-left:20px}.idea li{margin:7px 0}
+    .route{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.route .step{background:var(--ink);color:white;padding:20px;border-radius:16px}.route b{color:#a3e1c8}.route p{font-size:13px;color:#d3dedb;margin-bottom:0}
+    .draft{background:#eef3ef;border:1px solid var(--line);border-radius:18px;padding:28px}.draft p{margin:0 0 16px}.draft p:last-child{margin-bottom:0}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.toolbar input,.toolbar select{border:1px solid #bdc9c2;border-radius:10px;background:white;padding:10px 12px;font:inherit;min-width:180px}.toolbar input{flex:1}
+    .papers{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.paper{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}.paper h3{font-size:17px}.paper .sub{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}.paper p{font-size:14px;color:var(--muted);margin:0}.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}.btn{padding:6px 9px;border-radius:8px;border:1px solid var(--line);font-size:12px;background:#f7f8f5}.btn.primary{background:var(--green);color:white;border-color:var(--green)}
+    .method{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}.method ol{margin:0;padding-left:22px}.method li{margin-bottom:8px}
+    footer{padding:38px 0 70px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+    @media(max-width:860px){.section-head,.verdict,.method{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:minmax(0,1fr)}.innovation-grid,.papers{grid-template-columns:minmax(0,1fr)}.route{grid-template-columns:1fr 1fr}nav{display:none}.score-ring{margin:8px 0}.verdict>*{min-width:0}}
+    @media(max-width:520px){.shell{width:min(calc(100% - 24px),1180px)}.hero{padding-top:52px}.hero h1{font-size:37px;letter-spacing:-.04em}.lead{font-size:17px}.verdict{padding:25px 22px}.verdict h2{font-size:30px}.route{grid-template-columns:1fr}section{padding:48px 0}.pill{white-space:normal}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="shell"><a class="brand" href="#top">RAINFALL / RELATED WORKS</a><nav><a href="#verdict">判断</a><a href="#competitors">重合度</a><a href="#innovation">创新点</a><a href="#draft">Related Works</a><a href="#library">文献库</a><a href="#method">方法</a></nav></div></header>
+
+  <main id="top">
+    <section class="hero"><div class="shell">
+      <div class="eyebrow">Novelty scan · updated 2026-08-07</div>
+      <h1>不是“有没有人做过”，而是还剩下什么值得发表</h1>
+      <p class="lead">围绕当前 proposal 的五条链路——动态降雨、概率下推、多尺度水动力、在线观测更新、行动决策——逐项检索直接先例，并判断 RainFall 与已有工作的重合程度。</p>
+      <div class="meta"><span class="pill">33 篇重点论文</span><span class="pill">28 份已下载 PDF</span><span class="pill">28 份同名中文解读</span><span class="pill">5 篇 source-only</span><span class="pill">以 2022–2026 为主</span></div>
+    </div></section>
+
+    <section id="verdict"><div class="shell">
+      <div class="verdict">
+        <div><div class="eyebrow" style="color:#8fd9bc">Executive verdict</div><h2>没有发现一篇论文完全复制 RainFall，但四个“创新点”单独看都已有强先例。</h2>
+          <p>当前方案的创新性不是“高”，而是<strong>有条件的中等</strong>：GPU、多尺度、概率降雨、数据同化、数字孪生和行动输出都已经分别甚至成组出现。最接近的工作是数据稀缺地区开源洪水数字孪生、Inunda、LISFLOOD-FP 8.2、澳门洪水数字孪生和影响型预报。</p>
+          <p>真正可守住的贡献是：<strong>守恒且可识别的短临降雨集合 → 风险/拓扑触发的 CA–SWE 异构多尺度求解 → 异质观测在线更新 → 概率道路与脆弱人群行动</strong>，并在广西村镇用跨事件盲测证明它比强基线更快、更可靠、更有行动价值。</p>
+        </div>
+        <div class="score-ring" aria-label="当前组合创新性中等"></div>
+      </div>
+      <div class="grid" style="margin-top:18px">
+        <article class="card stat"><strong>0</strong><span>完全同构的单篇论文</span><p>未发现同时覆盖广西村镇、守恒雨场、多尺度异构求解、在线异质同化和行动验证的完整实现。</p></article>
+        <article class="card stat"><strong>5</strong><span>整体定位上的直接竞争工作</span><p>Rápalo 2024、Inunda 2026、Ai 2026、Wadhwa 2026、LISFLOOD-FP 8.2。</p></article>
+        <article class="card stat"><strong>4/4</strong><span>现有创新表述已有先例</span><p>需要从技术名词改写为可检验机制与独立证据。</p></article>
+      </div>
+      <div class="callout"><strong>证据边界：</strong>“未发现完全同构论文”是截至 2026-08-07 的目标化检索结论，不等于对所有语言、数据库、专利和未公开项目的穷尽性证明；重合百分比是依据五维功能矩阵形成的专家启发式评分，不是文本相似度或法律意义上的查重。</div>
+    </div></section>
+
+    <section id="competitors"><div class="shell">
+      <div class="section-head"><div><div class="eyebrow">Closest prior art</div><h2>最接近工作的重合度</h2></div><p>评分维度为：概率降雨/集合、多尺度水动力、在线更新、行动输出、数据稀缺村镇场景。重合高不代表对方更好，只表示它已占据相应的新颖性空间。</p></div>
+      <div class="matrix-wrap"><table>
+        <thead><tr><th>工作</th><th>核心已做内容</th><th>重合度</th><th>RainFall 仍可区分</th></tr></thead>
+        <tbody>
+          <tr><td><b>Rápalo et al., 2024</b><br><span class="tag high">最接近整体定位</span></td><td>数据稀缺地区；开源；近实时降水；水文—水动力；数字孪生；早期预警。</td><td><b>82%</b><div class="bar"><i style="width:82%"></i></div></td><td>广西村镇 30/5/1 m 层级、守恒短临雨场、风险触发异构求解和转移行动盲测。</td></tr>
+          <tr><td><b>Inunda, 2026</b><br><span class="tag high">算法强竞争</span></td><td>GPU 原生、质量守恒、可微分校准、真实事件、18 成员概率洪水。</td><td><b>78%</b><div class="bar"><i style="width:78%"></i></div></td><td>山地村镇、动态多尺度切换、异质观测、道路/撤离决策和业务治理。</td></tr>
+          <tr><td><b>Ai et al., 2026</b></td><td>数值洪水数字孪生、地表—排水耦合、实时模拟、网页/三维可视化、澳门案例。</td><td><b>73%</b><div class="bar"><i style="width:73%"></i></div></td><td>概率集合、数据稀缺、行动优化和跨事件验证。</td></tr>
+          <tr><td><b>Wadhwa et al., 2026</b></td><td>10 m 城市尺度 GPU 水动力、真实暴雨、遥感验证、实时决策定位。</td><td><b>70%</b><div class="bar"><i style="width:70%"></i></div></td><td>更短滚动时限、多尺度预算、山地/村镇、同化与撤离效果。</td></tr>
+          <tr><td><b>LISFLOOD-FP 8.2, 2025</b></td><td>GPU、多小波 DG、逐时间步动态分辨率适配、多尺度洪水。</td><td><b>68%</b><div class="bar"><i style="width:68%"></i></div></td><td>风险与水文拓扑共同触发、CA–SWE 切换、守恒跨接口和行动目标。</td></tr>
+          <tr><td><b>Jafarzadegan et al., 2021</b></td><td>EnKF、状态与参数联合更新、LISFLOOD-FP、实时概率淹没。</td><td><b>62%</b><div class="bar"><i style="width:62%"></i></div></td><td>分钟级山洪、多源低质量观测、主动传感和行动增益。</td></tr>
+          <tr><td><b>Pontman et al., 2026</b></td><td>影响预报、家庭撤离与保护行动、误报/漏报和避免损失评价。</td><td><b>58%</b><div class="bar"><i style="width:58%"></i></div></td><td>细粒度概率水动力、动态道路网络、村镇转移窗口与实地演练。</td></tr>
+          <tr><td><b>FloodOps Twin, 2026</b></td><td>角色化界面、道路通行、自动绕行、设施与经济暴露。</td><td><b>57%</b><div class="bar"><i style="width:57%"></i></div></td><td>预测模型、概率优化、用户实验和真实行动绩效。</td></tr>
+        </tbody>
+      </table></div>
+    </div></section>
+
+    <section id="innovation"><div class="shell">
+      <div class="section-head"><div><div class="eyebrow">Reframing novelty</div><h2>四个创新点需要怎样改写</h2></div><p>右上角分数是“按当前 proposal 文案作为独立创新”的稳健性，5 分最高。每项都给出更可发表的机制化版本。</p></div>
+      <div class="innovation-grid">
+        <article class="idea" data-score="2/5"><h3>01 · 守恒且概率化的降雨下推</h3><p><b>当前问题：</b>概率扩散下推、极端尾部和质量守恒都已有先例；中国区域 CorrDiff 已到 3 km。</p><ul><li>改为“雷达—站点—NWP 在线后验融合”，不是单模型超分。</li><li>同时约束粗格总量、雨团平移连续、极端分位数和水文响应。</li><li>建立“可辨识尺度/虚假细节”诊断，并把下推不确定性传入水深与行动。</li></ul><span class="tag good">改写后潜力 4/5</span></article>
+        <article class="idea" data-score="2/5"><h3>02 · 事件驱动的多尺度计算</h3><p><b>当前问题：</b>LISFLOOD-FP 已完成 GPU 动态分辨率；RIM2D 和 SynxFlow 已做大域实时计算。</p><ul><li>以水文拓扑、风险暴露和局部误差共同触发，而非只看波动系数。</li><li>低风险 CA、高风险 SWE 的异构切换必须共享守恒通量和状态。</li><li>报告切换误差、接缝误差、漏激活风险和固定算力下的 Pareto 前沿。</li></ul><span class="tag good">改写后潜力 4/5</span></article>
+        <article class="idea" data-score="2/5"><h3>03 · 观测同化与在线参数更新</h3><p><b>当前问题：</b>EnKF、粒子滤波、在线阻力学习、卫星和众包校准均已有研究。</p><ul><li>显式区分状态更新与参数学习，证明可辨识性。</li><li>对站点、视频、遥感、洪痕和群众上报建立不同误差模型与时效权重。</li><li>用风险驱动的主动传感器选择，在有限观测预算下最大化行动价值。</li></ul><span class="tag good">改写后潜力 4/5</span></article>
+        <article class="idea" data-score="2/5"><h3>04 · 从水深场到行动策略</h3><p><b>当前问题：</b>影响预报、角色化数字孪生、动态绕行和撤离效果评价已有直接先例。</p><ul><li>联合优化提前量、虚警代价、漏报生命风险与道路可达性。</li><li>对村干部、指挥员和居民输出不同证据和拒答/降级条件。</li><li>用演练或历史盲测评价“是否更早且更正确行动”，不是只看地图精度。</li></ul><span class="tag good">改写后潜力 4/5</span></article>
+      </div>
+    </div></section>
+
+    <section><div class="shell">
+      <div class="section-head"><div><div class="eyebrow">Defensible contribution</div><h2>建议收缩成一条主贡献链</h2></div><p>不要同时声称四个模块都“首次”。将论文主线压到一个可重复、可对照、可否证的端到端命题。</p></div>
+      <div class="route">
+        <div class="step"><b>01 守恒集合</b><p>多源短临雨场后验与虚假细节诊断。</p></div>
+        <div class="step"><b>02 风险触发</b><p>拓扑 + 暴露 + 误差驱动异构加密。</p></div>
+        <div class="step"><b>03 在线纠偏</b><p>异质观测质量模型与状态/参数分离更新。</p></div>
+        <div class="step"><b>04 行动验证</b><p>动态道路、转移窗口与成本敏感阈值。</p></div>
+      </div>
+      <div class="callout"><b>推荐核心命题：</b>在固定计算和观测预算下，风险—拓扑触发的守恒多尺度集合系统，能否相较全域粗网格、全域细网格和单一确定性模型，在广西数据稀缺村镇同时提高高风险地点的概率校准、行动提前量与道路/人员风险识别，并保持全域质量闭合？</div>
+    </div></section>
+
+    <section id="draft"><div class="shell">
+      <div class="section-head"><div><div class="eyebrow">Updated paper-ready text</div><h2>可直接写入正文的 Related Works</h2></div><p>本节已按33篇重点文献重新组织。正文不使用启发式重合百分比，而以“已有能力—未解决边界—RainFall 差异”展开；预印本与 source-only 证据均明确标注。</p></div>
+      <div class="draft">
+        <p><b>降雨临近预报与概率下推。</b> 生成式降雨建模已从极端降雨临近预报发展到公里尺度概率下推：<a href="https://doi.org/10.1038/s41586-023-06184-4">NowcastNet</a>引入物理条件生成机制，<a href="https://doi.org/10.48550/arXiv.2307.10422">PreDiff</a>和<a href="https://doi.org/10.1038/s43247-025-02042-5">CorrDiff</a>分别探索潜空间扩散与残差修正扩散，中国区域<a href="https://doi.org/10.5194/egusphere-2026-822">3 km CorrDiff</a><span class="tag mid">预印本</span>进一步缩小了“区域概率下推”本身的新颖性空间。另一方面，<a href="https://doi.org/10.1029/2023GL105326">山地降水质量守恒下推</a>说明粗格总量约束已有明确先例，而<a href="https://doi.org/10.1088/3049-4753/ae7114">扩散下推分辨率极限研究</a>表明，当输入约束不足时，生成模型可能错置对流核心并产生虚假局地极端。因此，RainFall 不把生成细节视为新增观测，而将雷达、站点与数值预报融合为受总量守恒、时空连续、极端分布和可辨识尺度共同约束的集合，并把雨场不确定性继续传播到洪涝与行动输出。</p>
+        <p><b>快速、多尺度与异构洪涝模拟。</b> <a href="https://doi.org/10.3390/w12071997">CAMC</a>、<a href="https://doi.org/10.1007/s13753-022-00416-3">SWMM–WCA2D</a>和<a href="https://doi.org/10.1016/j.jhydrol.2022.128449">动态波元胞自动机</a><span class="tag high">source-only</span>已展示 CA 在实时积涝模拟、排水耦合及质量—惯性传播方面的能力；<a href="https://doi.org/10.5194/gmd-18-9827-2025">LISFLOOD-FP 8.2</a>则直接实现 GPU 浅水方程与逐时间步动态分辨率适配。大域实时计算还见于<a href="https://doi.org/10.5194/egusphere-2025-2425">RIM2D</a><span class="tag mid">预印本</span>和<a href="https://doi.org/10.1038/s44304-026-00190-y">SynxFlow 城市尺度研究</a>，而<a href="https://doi.org/10.48550/arXiv.2607.09614">Inunda</a><span class="tag mid">预印本</span>已将 GPU 原生、质量守恒、可微校准和集合概率洪水结合起来。由此，RainFall 的差异不能只是“GPU + 多尺度 + CA/SWE”，而应落实为固定算力预算下由水文拓扑、暴露风险与在线误差共同触发的 CA–SWE 异构切换，并量化跨模型通量闭合、接缝误差和漏激活风险。</p>
+        <p><b>概率洪水图、数据同化与在线参数学习。</b> 集合淹没图已有<a href="https://doi.org/10.5194/nhess-23-2769-2023">空间 spread–skill 验证</a>和<a href="https://doi.org/10.5194/nhess-24-2647-2024">多降雨产品不确定性传播</a>方法；<a href="https://doi.org/10.5194/hess-25-4995-2021">顺序数据同化研究</a>已使用 EnKF 联合更新 LISFLOOD-FP 的状态与参数，<a href="https://doi.org/10.1029/2024WR038424">在线阻力参数学习</a>又把传感器选择、贝叶斯优化和实时预报组成闭环。群众水位可用于<a href="https://doi.org/10.1016/j.jhydrol.2022.128467">二维模型校准</a>，卫星洪水图也已进入<a href="https://doi.org/10.48550/arXiv.2505.08553">数字孪生数据同化原型</a><span class="tag mid">预印本</span>。因此，本研究不声称首次同化某一观测类型，而是为雨量、水位、视频、遥感、洪痕与群众上报分别建立质量及时效模型，区分状态更新与参数学习的可辨识性，并检验有限观测预算下同化对概率校准、道路判断和行动提前量的真实增益。</p>
+        <p><b>数字孪生、影响预报与行动决策。</b> 面向<a href="https://doi.org/10.1016/j.jhydrol.2024.131929">数据稀缺地区的开源洪水数字孪生</a><span class="tag high">source-only</span>已经整合近实时降水、水文—水动力模拟和早期预警，是 RainFall 整体定位上最接近的先例之一；<a href="https://doi.org/10.1016/j.envsoft.2026.106870">澳门城市洪涝数字孪生</a><span class="tag high">source-only</span>进一步连接地表—排水耦合、实时模拟和三维可视化。业务层面，<a href="https://doi.org/10.5194/nhess-26-1457-2026">欧洲洪水预报与预警系统比较</a>揭示了技术预报转化为影响行动的制度缺口，<a href="https://doi.org/10.31223/X54Z22">FloodOps Twin</a><span class="tag mid">预印本</span>已覆盖角色化界面、道路通行和自动绕行，<a href="https://doi.org/10.2139/ssrn.6966611">影响型预报与早期行动研究</a><span class="tag high">source-only · 预印本</span>则以撤离、保护行动和避免损失评价预警价值。RainFall 因而需要把概率水深、流速与到达时间同动态道路、脆弱人群和设施失效联合起来，并以正确行动、提前量、虚警代价和漏报风险评价，而不能只展示风险地图或可视化平台。</p>
+        <p><b>研究缺口与本文定位。</b> 上述研究分别甚至成组覆盖了概率降雨、快速水动力、多尺度计算、实时同化、数字孪生和影响型预警，但尚未形成针对广西数据稀缺村镇、同时受固定算力与有限观测约束的完整可验证链路。RainFall 拟检验的核心命题是：守恒且校准的短临降雨集合，配合风险—拓扑—误差共同触发的 CA–SWE 异构多尺度求解和分源观测在线更新，能否在跨事件盲测中相较全域粗网格、全域细网格及单一确定性模型，同时改善高风险地点的概率可靠度、行动提前量、道路失效与脆弱人群识别，并保持全域质量闭合。这里的“研究缺口”是本轮目标化检索形成的可检验定位，不是对所有数据库、专利和未公开系统的绝对空白声明。</p>
+      </div>
+      <div class="grid" style="margin-top:18px">
+        <article class="card"><h3>主线必引</h3><p>CorrDiff、中国区域 CorrDiff、LISFLOOD-FP 8.2、SynxFlow、Inunda、顺序数据同化、在线参数学习、数据稀缺地区数字孪生。</p></article>
+        <article class="card"><h3>边界与反例</h3><p>质量守恒下推、扩散下推分辨率极限、动态波 CA、DEM 精度、概率阈值与 spread–skill，用于说明“生成细节”和“实时精细模拟”的适用边界。</p></article>
+        <article class="card"><h3>行动与系统</h3><p>澳门数字孪生、欧洲 FFEWS、FloodOps Twin、影响型预报与早期行动，用于把技术指标连接到道路、撤离和避免损失。</p></article>
+      </div>
+      <div class="callout"><b>引用状态提示：</b>正式投稿时应优先以同行评议论文支撑既有能力；Inunda、RIM2D、FloodOps Twin、卫星同化数字孪生和中国区域 CorrDiff 应明确标为预印本。带 <span class="tag high">source-only</span> 的工作已核验 DOI/官方页面，但本地未保存有效 PDF，引用具体方法或数值前应通过机构权限复核全文。</div>
+    </div></section>
+
+    <section id="library"><div class="shell">
+      <div class="section-head"><div><div class="eyebrow">Local literature library</div><h2>全部重点文献与中文解读</h2></div><p>PDF 链接指向本地下载文件；“source-only”表示来源和全文页已核验，但平台阻止自动下载。所有本地 PDF 都有同名 Markdown 笔记。</p></div>
+      <div class="toolbar"><input id="search" type="search" placeholder="搜索标题、类别或关键词…" /><select id="category"><option value="">全部类别</option></select><select id="access"><option value="">全部获取状态</option><option value="pdf">已下载 PDF</option><option value="source-only">source-only</option></select></div>
+      <div class="papers" id="papers"></div>
+    </div></section>
+
+    <section id="method"><div class="shell">
+      <div class="section-head"><div><div class="eyebrow">Method & evidence</div><h2>检索方法与边界</h2></div><p>本轮是面向创新判断的目标化检索，不是传统的全面系统综述或元分析。</p></div>
+      <div class="method">
+        <article class="card"><h3>纳入范围</h3><ol><li>以 2022–2026 年为主，保留直接奠基工作。</li><li>优先正式期刊、会议、作者机构页和开放预印本。</li><li>围绕五维功能矩阵筛选，而非只按“flood + AI”关键词。</li><li>对最接近工作的摘要、方法、结果、局限和未来工作交叉核验。</li></ol></article>
+        <article class="card"><h3>证据分级</h3><p><span class="tag good">正式同行评议</span> 可支撑“已有方法/结果”的主要判断；<span class="tag mid">预印本</span> 用于前沿竞争跟踪，不能当成已稳定复现；<span class="tag high">source-only</span> 已核验来源页面，但未本地保存全文。论文中的速度、精度和业务效果均属于各自案例，不是 RainFall 已达到的性能。</p><p>本地清单：<a href="reference/paper_list.csv">paper_list.csv</a> · <a href="reference/README.md">reference/README.md</a> · <a href="rainfall_proposal.html">当前 proposal</a></p></article>
+      </div>
+    </div></section>
+  </main>
+
+  <footer><div class="shell">RainFall innovation scan · generated 2026-08-07 · 结论应在投稿前用 Scopus / Web of Science / Google Scholar 引文追踪再刷新一次。</div></footer>
+
+  <script>
+    const papers = [
+      [1,2023,'peer-reviewed','降雨临近预报','NowcastNet: extreme precipitation nowcasting','中','papers/01_2023_NowcastNet_extreme_precipitation','10.1038/s41586-023-06184-4','物理条件生成式极端降雨临近预报。'],
+      [2,2023,'peer-reviewed','降雨临近预报','PreDiff: latent diffusion precipitation nowcasting','中','papers/02_2023_PreDiff_precipitation_nowcasting','10.48550/arXiv.2307.10422','概率雨场与知识约束基线。'],
+      [3,2024,'preprint','降雨临近预报','GPTCast: weather language model for precipitation','低','papers/03_2024_GPTCast_weather_language_model','10.48550/arXiv.2407.02089','token 化自回归雨场集合。'],
+      [4,2025,'peer-reviewed','概率下推','CorrDiff: km-scale atmospheric downscaling','高','papers/04_2025_CorrDiff_km_scale_downscaling','10.1038/s43247-025-02042-5','概率化公里尺度下推的强直接先例。'],
+      [5,2026,'preprint','概率下推','China Regional 3 km CorrDiff','高','papers/05_2026_China_3km_CorrDiff_downscaling_preprint','10.5194/egusphere-2026-822','中国区域 25 km→3 km，下推新颖性空间明显收缩。'],
+      [6,2025,'peer-reviewed','多尺度水动力','LISFLOOD-FP 8.2 dynamic adaptive GPU solver','极高','papers/06_2025_LISFLOOD_FP_8_2_GPU_multiscale','10.5194/gmd-18-9827-2025','GPU + 动态分辨率的最强求解器先例。'],
+      [7,2026,'peer-reviewed','GPU水动力','SWEpy open-source GPU SWE solver','中','papers/07_2026_SWEpy_GPU_solver','10.5194/gmd-19-3953-2026','消费级硬件上的开源 GPU 浅水求解器。'],
+      [8,2025,'preprint','GPU水动力','RIM2D multi-GPU real-time Berlin forecasting','高','papers/08_2025_RIM2D_real_time_high_resolution_preprint','10.5194/egusphere-2025-2425','大域、多 GPU、实时高分辨率工程对照。'],
+      [9,2026,'peer-reviewed','GPU水动力','GPU city-scale urban flood forecasting','极高','papers/09_2026_GPU_city_scale_flood_forecasting','10.1038/s44304-026-00190-y','10 m 城市尺度、真实暴雨与遥感验证。'],
+      [10,2026,'preprint','概率水动力','Inunda GPU-native differentiable probabilistic solver','极高','papers/10_2026_Inunda_GPU_native_probabilistic_flood_preprint','10.48550/arXiv.2607.09614','GPU、质量守恒、集合与可微校准的强竞争工作。'],
+      [11,2025,'peer-reviewed','水文水动力','Integrated GPU hydrological-hydrodynamic model','高','papers/11_2025_GPU_catchment_rainfall_flood_model','10.3390/atmos16070809','流域级产汇流—水动力 GPU 耦合。'],
+      [12,2023,'peer-reviewed','概率验证','Ensemble flood map spread-skill','中','papers/12_2023_Ensemble_flood_maps_spread_skill','10.5194/nhess-23-2769-2023','集合洪水图的空间可靠度验证。'],
+      [13,2024,'peer-reviewed','概率验证','Probabilistic inundation from precipitation products','高','papers/13_2024_Probabilistic_flood_mapping_precipitation_products','10.5194/nhess-24-2647-2024','多降雨产品不确定性传播到水深与范围。'],
+      [14,2024,'peer-reviewed','行动阈值','Probabilistic precipitation decision thresholds','高','papers/14_2024_Probabilistic_precipitation_decision_thresholds','10.5194/nhess-24-2793-2024','成本—损失敏感阈值与可预报性上限。'],
+      [15,2022,'peer-reviewed','地形数据','FABDEM 30 m bare-earth DEM','中','papers/15_2022_FABDEM_30m_bare_earth_DEM','10.1088/1748-9326/ac4d4f','30 m 区域筛查底座。'],
+      [16,2024,'peer-reviewed','地形数据','Global DEM accuracy in flood-prone environments','中','papers/16_2024_Global_DEM_accuracy_flood_prone','10.1080/17538947.2024.2308734','公开 DEM 的地区性误差边界。'],
+      [17,2022,'peer-reviewed','元胞自动机','Dynamic-wave CA shallow water framework','极高','papers/17_2022_Dynamic_wave_cellular_automata_source_only','10.1016/j.jhydrol.2022.128449','SWFCA 已处理质量与惯性。','source-only'],
+      [18,2020,'peer-reviewed','元胞自动机','CAMC live flood forecasting','高','papers/18_2020_CAMC_live_flood_forecasting','10.3390/w12071997','实时 CA 水深可用但速度弱。'],
+      [19,2022,'peer-reviewed','排水耦合','SWMM-WCA2D coupled inundation','高','papers/19_2022_SWMM_WCA2D_coupled_model','10.1007/s13753-022-00416-3','1D 管网—2D CA 与不确定性。'],
+      [20,2021,'peer-reviewed','在线更新','Sequential DA probabilistic inundation','极高','papers/20_2021_Sequential_DA_probabilistic_inundation','10.5194/hess-25-4995-2021','EnKF 联合状态—参数更新。'],
+      [21,2025,'peer-reviewed','在线更新','Real-time flow resistance parameter learning','极高','papers/21_2025_Real_time_parameter_learning','10.1029/2024WR038424','贝叶斯优化与主动传感器选址。'],
+      [22,2022,'peer-reviewed','验证数据','Laboratory modelling of urban flooding','中','papers/22_2022_Laboratory_urban_flooding_dataset','10.1038/s41597-022-01282-w','水深、流量与 LSPIV 速度场。'],
+      [23,2026,'peer-reviewed','代理模型','CNN-ConvLSTM real-time urban flood forecast','高','papers/23_2026_CNN_ConvLSTM_urban_flood_forecasting','10.5194/hess-30-1625-2026','实时递归水深预测与观测更新接口。'],
+      [24,2026,'peer-reviewed','数字孪生','Macao numerical urban flood digital twin','极高','papers/24_2026_Urban_flood_digital_twin_Macao_source_only','10.1016/j.envsoft.2026.106870','实时水动力、排水耦合与网页三维可视化。','source-only'],
+      [25,2026,'peer-reviewed','行动预警','European flood forecasting and warning systems','高','papers/25_2026_Flood_forecasting_early_warning_systems','10.5194/nhess-26-1457-2026','技术预报到影响行动的制度缺口。'],
+      [26,2023,'peer-reviewed','概率下推','Mass-conserving mountain precipitation downscaling','高','papers/26_2023_Mass_conserving_precipitation_downscaling','10.1029/2023GL105326','质量守恒山地降水下推先例。'],
+      [27,2026,'peer-reviewed','概率下推','Diffusion downscaling resolution limits','高','papers/27_2026_Diffusion_downscaling_resolution_limits','10.1088/3049-4753/ae7114','量化虚假细节与输入分辨率极限。'],
+      [28,2025,'peer-reviewed','元胞自动机','GPU SWFASTCA waterflow and pollutant transport','极高','papers/28_2025_GPU_CA_waterflow_pollutant_source_only','10.1016/j.wroa.2025.100397','GPU 动态波 CA 已达实时级案例性能。','source-only'],
+      [29,2026,'preprint','行动预警','FloodOps Twin role-based spatial intelligence','高','papers/29_2026_FloodOps_Twin_preprint','10.31223/X54Z22','道路通行、绕行与角色化产品。'],
+      [30,2026,'preprint','行动预警','Impact-based forecasting and early action','极高','papers/30_2026_Impact_based_forecasting_early_action_source_only','10.2139/ssrn.6966611','撤离、保护行动与避免损失评价。','source-only'],
+      [31,2022,'peer-reviewed','在线更新','Crowdsourced water levels for calibration','高','papers/31_2022_Crowdsourced_water_levels_calibration','10.1016/j.jhydrol.2022.128467','群众水位用于二维模型定量校准。'],
+      [32,2025,'preprint','数字孪生','Flood digital twin with satellite DA','极高','papers/32_2025_Flood_digital_twin_satellite_DA_preprint','10.48550/arXiv.2505.08553','GloFAS、LISFLOOD-FP、Sentinel-1 与粒子滤波。'],
+      [33,2024,'peer-reviewed','数字孪生','Open-source flood forecasting for data-scarce regions','极高','papers/33_2024_Data_scarce_open_source_flood_digital_twin_source_only','10.1016/j.jhydrol.2024.131929','整体定位最接近：数据稀缺、开源、NRT、数字孪生与 EWS。','source-only']
+    ];
+    const box=document.getElementById('papers'), q=document.getElementById('search'), cat=document.getElementById('category'), acc=document.getElementById('access');
+    [...new Set(papers.map(p=>p[3]))].sort().forEach(v=>cat.insertAdjacentHTML('beforeend',`<option>${v}</option>`));
+    function render(){const term=q.value.trim().toLowerCase(), cv=cat.value, av=acc.value; const rows=papers.filter(p=>{const state=p[9]||'pdf';return (!term||p.join(' ').toLowerCase().includes(term))&&(!cv||p[3]===cv)&&(!av||state===av)});box.innerHTML=rows.map(p=>{const state=p[9]||'pdf', local=state==='pdf'?`<a class="btn primary" href="reference/${p[6]}.pdf">PDF</a>`:`<span class="btn">source-only</span>`;return `<article class="paper"><div class="sub"><span>#${String(p[0]).padStart(2,'0')}</span><span>${p[1]}</span><span>${p[2]}</span><span class="tag ${p[5].includes('极')?'high':p[5]==='高'?'mid':'good'}">重合 ${p[5]}</span></div><h3>${p[4]}</h3><p>${p[8]}</p><div class="links">${local}<a class="btn" href="reference/${p[6]}.md">中文解读</a><a class="btn" href="https://doi.org/${p[7]}">DOI / 来源</a></div></article>`}).join('')||'<p>没有匹配结果。</p>'}
+    [q,cat,acc].forEach(el=>el.addEventListener('input',render)); render();
+  </script>
+</body>
+</html>

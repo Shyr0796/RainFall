@@ -1,0 +1,6 @@
+{
+  "status": "partial_equation_scope_diagnostic",
+  "evidence_class": "analytic comparison against the full shallow-water Ritter solution",
+  "interpretation": "not validated: the current local-inertial formulation omits advective acceleration required by this solution",
+  "metrics": "metrics.json"
+}

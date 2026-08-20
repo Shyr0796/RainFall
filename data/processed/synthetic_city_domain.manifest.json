@@ -1,0 +1,48 @@
+{
+  "audit": {
+    "active_cells": 4800,
+    "all_touched": false,
+    "building_cells": 1440,
+    "building_component_sha256": {
+      "synthetic_buildings.cpg": "09fc313075748ce8ead962229ed89c919d5a9ff71974ee725a0b48bb87d975a2",
+      "synthetic_buildings.dbf": "60dfa0ec930b48b10d03b761e0720140e2af49ec1fe8f76ebce94ea6d280703d",
+      "synthetic_buildings.prj": "99a5a32f41f7df7e52e869dca1b2df8b2009ba20c28dbf95e61dc9c891dffd38",
+      "synthetic_buildings.shp": "b33820d50d1d2068c09bc6f2677b492fd183d64eea0b72e1a358cff0c00058ae",
+      "synthetic_buildings.shx": "8e0db1d9995047cf2040b81d8f7e259016fc39dee6c122f4661117ce8527660e"
+    },
+    "building_plan_area_m2": 5760.0,
+    "default_height_m": 10.0,
+    "dem_sha256": "454cbc7e510a4d16fbb499e81029b7e21e68374e18d8d3f482c86c6c2a0a7de6",
+    "fallback_height_count": 0,
+    "feature_count": 8,
+    "height_field": "height_m",
+    "height_mode": "relative",
+    "skipped_empty_geometries": 0,
+    "solid_volume_proxy_m3": 65760.0,
+    "vertical_scale_to_m": 1.0
+  },
+  "domain_file": "/home/shyr/workspace/RainFall/data/processed/synthetic_city_domain.npz",
+  "grid": {
+    "bounds": [
+      400000.0,
+      880.0,
+      400160.0,
+      1000.0
+    ],
+    "cell_size_x_m": 2.0,
+    "cell_size_y_m": 2.0,
+    "crs": "EPSG:32650",
+    "height": 60,
+    "source_buildings": "/home/shyr/workspace/RainFall/validation/advanced/10_urban_gis_core/data/synthetic_buildings.shp",
+    "source_dem": "/home/shyr/workspace/RainFall/validation/advanced/10_urban_gis_core/data/synthetic_city_dem.tif",
+    "transform": [
+      2.0,
+      0.0,
+      400000.0,
+      0.0,
+      -2.0,
+      1000.0
+    ],
+    "width": 80
+  }
+}

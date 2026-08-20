@@ -1,0 +1,9 @@
+{
+  "experiment": "09_usgs_muddy_creek",
+  "status": "PUBLIC_ARCHIVE_COMPLETE_ADAPTER_REQUIRED",
+  "data_downloaded": true,
+  "data_integrity_checked": true,
+  "observation_targets_extracted": true,
+  "rainfall_model_executed": false,
+  "formal_validation_complete": false
+}

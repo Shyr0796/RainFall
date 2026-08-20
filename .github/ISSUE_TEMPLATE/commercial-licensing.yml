@@ -1,0 +1,36 @@
+name: Commercial licensing inquiry
+description: Request a separate written license before any commercial use.
+title: "[Commercial Licensing] "
+labels: ["licensing"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The public repository does not grant commercial-use rights. This form
+        starts a discussion only and does not itself grant a license.
+  - type: input
+    id: organization
+    attributes:
+      label: Organization
+    validations:
+      required: true
+  - type: textarea
+    id: intended-use
+    attributes:
+      label: Intended commercial use
+      description: Describe the product, service, deployment, users, and expected scale.
+    validations:
+      required: true
+  - type: textarea
+    id: requested-scope
+    attributes:
+      label: Requested scope and timeline
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Acknowledgement
+      options:
+        - label: I understand that no commercial license is granted until a separate written agreement is executed.
+          required: true

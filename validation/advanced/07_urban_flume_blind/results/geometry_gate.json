@@ -1,0 +1,278 @@
+{
+  "CO": {
+    "left_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        59,
+        68
+      ]
+    ],
+    "right_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "y0_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "ymax_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        99,
+        108
+      ]
+    ],
+    "pass": true
+  },
+  "CE": {
+    "left_segments": [
+      [
+        20,
+        28
+      ],
+      [
+        55,
+        63
+      ]
+    ],
+    "right_segments": [
+      [
+        20,
+        29
+      ]
+    ],
+    "y0_segments": [
+      [
+        20,
+        29
+      ]
+    ],
+    "ymax_segments": [
+      [
+        20,
+        29
+      ],
+      [
+        94,
+        103
+      ]
+    ],
+    "pass": true
+  },
+  "Ref": {
+    "left_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        59,
+        68
+      ]
+    ],
+    "right_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "y0_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "ymax_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        99,
+        108
+      ]
+    ],
+    "pass": true
+  },
+  "Px5": {
+    "left_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        59,
+        68
+      ]
+    ],
+    "right_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "y0_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "ymax_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        99,
+        108
+      ]
+    ],
+    "pass": true
+  },
+  "Py5": {
+    "left_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        59,
+        68
+      ]
+    ],
+    "right_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "y0_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "ymax_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        99,
+        108
+      ]
+    ],
+    "pass": true
+  },
+  "BU": {
+    "left_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        59,
+        68
+      ]
+    ],
+    "right_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "y0_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "ymax_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        99,
+        108
+      ]
+    ],
+    "pass": true
+  },
+  "BS": {
+    "left_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        60,
+        68
+      ]
+    ],
+    "right_segments": [
+      [
+        25,
+        33
+      ]
+    ],
+    "y0_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "ymax_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        99,
+        108
+      ]
+    ],
+    "pass": true
+  },
+  "BD": {
+    "left_segments": [
+      [
+        25,
+        34
+      ],
+      [
+        60,
+        68
+      ]
+    ],
+    "right_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "y0_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "ymax_segments": [
+      [
+        25,
+        34
+      ]
+    ],
+    "pass": false
+  }
+}

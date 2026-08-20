@@ -1,0 +1,191 @@
+[
+  {
+    "file": "data/processed/depths/MudharMO_1.tif",
+    "width": 1809,
+    "height": 1285,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD_1983_Transverse_Mercator\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 3.99999999999897,
+    "resolution_y": 3.9999999999985505,
+    "bounds": [
+      1251041.8617380357,
+      14031918.820564482,
+      1258277.8617380338,
+      14037058.82056448
+    ],
+    "nodata": -3.4028230607370965e+38,
+    "valid_cells": 102739,
+    "min": 0.0009765625,
+    "max": 9.111572265625,
+    "mean": 1.9460198879241943
+  },
+  {
+    "file": "data/processed/depths/MudharMO_2.tif",
+    "width": 1809,
+    "height": 1288,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD_1983_Transverse_Mercator\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 3.99999999999897,
+    "resolution_y": 3.999999999998554,
+    "bounds": [
+      1251042.036889676,
+      14031906.820683738,
+      1258278.0368896741,
+      14037058.820683736
+    ],
+    "nodata": -3.4028230607370965e+38,
+    "valid_cells": 137470,
+    "min": 0.0009765625,
+    "max": 9.47039794921875,
+    "mean": 1.872626781463623
+  },
+  {
+    "file": "data/processed/depths/MudharMO_3.tif",
+    "width": 1809,
+    "height": 1291,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD_1983_Transverse_Mercator\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 3.99999999999897,
+    "resolution_y": 3.999999999998557,
+    "bounds": [
+      1251040.4529105206,
+      14031894.820562016,
+      1258276.4529105187,
+      14037058.820562014
+    ],
+    "nodata": -3.4028230607370965e+38,
+    "valid_cells": 196767,
+    "min": 0.0009765625,
+    "max": 9.87554931640625,
+    "mean": 1.9554367065429688
+  },
+  {
+    "file": "data/processed/depths/MudharMO_4.tif",
+    "width": 1810,
+    "height": 1311,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD_1983_Transverse_Mercator\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 3.999999999998971,
+    "resolution_y": 3.9999999999985794,
+    "bounds": [
+      1251040.460517549,
+      14031818.82061973,
+      1258280.460517547,
+      14037062.820619728
+    ],
+    "nodata": -3.4028230607370965e+38,
+    "valid_cells": 258322,
+    "min": 0.00018310546875,
+    "max": 10.96331787109375,
+    "mean": 2.104266405105591
+  },
+  {
+    "file": "data/processed/depths/MudharMO_5.tif",
+    "width": 1811,
+    "height": 1311,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD_1983_Transverse_Mercator\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 3.9999999999989715,
+    "resolution_y": 3.9999999999985794,
+    "bounds": [
+      1251039.5847549778,
+      14031818.820562016,
+      1258283.584754976,
+      14037062.820562014
+    ],
+    "nodata": -3.4028230607370965e+38,
+    "valid_cells": 341005,
+    "min": 0.0003662109375,
+    "max": 12.6966552734375,
+    "mean": 2.530519962310791
+  },
+  {
+    "file": "data/processed/depths/MudharMO_6.tif",
+    "width": 1813,
+    "height": 1342,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD_1983_Transverse_Mercator\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 3.999999999998973,
+    "resolution_y": 3.999999999998612,
+    "bounds": [
+      1251037.307786122,
+      14031694.820562016,
+      1258289.30778612,
+      14037062.820562014
+    ],
+    "nodata": -3.4028230607370965e+38,
+    "valid_cells": 422665,
+    "min": 0.00042724609375,
+    "max": 14.20989990234375,
+    "mean": 2.8112974166870117
+  },
+  {
+    "file": "data/processed/depths/MudharMO_7.tif",
+    "width": 1816,
+    "height": 1357,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD_1983_Transverse_Mercator\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 3.999999999998974,
+    "resolution_y": 3.9999999999986273,
+    "bounds": [
+      1251032.9289825459,
+      14031642.820562016,
+      1258296.928982544,
+      14037070.820562014
+    ],
+    "nodata": -3.4028230607370965e+38,
+    "valid_cells": 533094,
+    "min": 0.0009765625,
+    "max": 15.58026123046875,
+    "mean": 3.190410852432251
+  },
+  {
+    "file": "data/processed/full_model/CN_II_existing_conditions/Harrisonville_RAS_II_existing_conditions/Harrisonville_RAS_1/Existing Conditions Terrain/Existing_export.tif",
+    "width": 8316,
+    "height": 11204,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "PROJCS[\"NAD83 / UTM zone 15N\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 4.0,
+    "resolution_y": 4.0,
+    "bounds": [
+      1236458.652165895,
+      14021406.820562037,
+      1269722.652165895,
+      14066222.820562037
+    ],
+    "nodata": -9999.0,
+    "valid_cells": 93116051,
+    "min": 812.46875,
+    "max": 1056.53125,
+    "mean": 933.3208618164062
+  },
+  {
+    "file": "data/processed/full_model/CN_II_existing_conditions/Harrisonville_RAS_II_existing_conditions/Harrisonville_RAS_1/Roughness/Manning's n.tif",
+    "width": 5260,
+    "height": 6046,
+    "bands": 1,
+    "dtype": "uint8",
+    "crs": "PROJCS[\"NAD83 / UTM zone 15N\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101004,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4269\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-93],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",1640416.66666667],PARAMETER[\"false_northing\",0],UNIT[\"US survey foot\",0.304800609601219,AUTHORITY[\"EPSG\",\"9003\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "resolution_x": 4.0,
+    "resolution_y": 4.0,
+    "bounds": [
+      1246404.506989274,
+      14027348.76336991,
+      1267444.506989274,
+      14051532.76336991
+    ],
+    "nodata": null,
+    "valid_cells": 31801960,
+    "min": 0.0,
+    "max": 21.0,
+    "mean": 7.219775070467355
+  }
+]

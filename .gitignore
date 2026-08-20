@@ -1,0 +1,28 @@
+.venv/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+outputs/*
+!outputs/.gitkeep
+
+# Local or third-party validation datasets are intentionally not redistributed.
+# Keep the manifests, source metadata, download/audit scripts, and compact results.
+reference/papers/*.pdf
+validation/**/data/raw/
+validation/**/data/extracted/
+validation/**/data/processed/
+validation/**/data/tools/
+validation/**/logs/
+validation/logs/
+
+# Local GIS inputs and prepared domains; retain only the committed synthetic fixture.
+data/raw/
+data/processed/*
+!data/processed/synthetic_city_domain.npz
+!data/processed/synthetic_city_domain.manifest.json
+
+# Local service state.
+*.log
+*.pid

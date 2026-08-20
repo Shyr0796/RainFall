@@ -1,0 +1,10 @@
+{
+  "title": "Benchmarking model data",
+  "publisher": "UK Environment Agency",
+  "project_code": "SC120002",
+  "classification": "synthetic/standard hydraulic benchmark data; not observations",
+  "landing_page": "https://www.gov.uk/flood-and-coastal-erosion-risk-management-research-reports/2d-benchmarking-evaluating-the-latest-generation-of-the-hydraulic-models-for-fcrm",
+  "download_url": "https://assets.publishing.service.gov.uk/media/6033a9bbd3bf7f72182e99ca/Benchmarking_Model_Data.zip",
+  "license_note": "GOV.UK page states Open Government Licence v3.0 except where otherwise stated; inspect files for exceptions before redistribution."
+}
+

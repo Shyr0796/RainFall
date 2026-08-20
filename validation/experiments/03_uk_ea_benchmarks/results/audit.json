@@ -1,0 +1,223 @@
+{
+  "experiment": "03_uk_ea_benchmarks",
+  "classification": "standard numerical benchmark/model intercomparison; not field observations",
+  "archive": {
+    "path": "data/raw/Benchmarking_Model_Data.zip",
+    "bytes": 52456734,
+    "sha256": "388c2789570e5975fe909033e34bedbe5d7bde5e6d7f9b7d7c1eaf04e58bc732"
+  },
+  "inventory": {
+    "file_count": 64,
+    "total_extracted_bytes": 268552023,
+    "nested_archives_extracted": [
+      "Test1_dataset_2010.zip",
+      "Test2_dataset_2010.zip",
+      "Test3_dataset_2010.zip",
+      "Test4_dataset_2010.zip",
+      "Test5_dataset_2010.zip",
+      "Test6_dataset_2010.zip",
+      "Test7_dataset_2010.zip",
+      "XS info Tests_5&6.zip"
+    ],
+    "top_level_counts": {
+      "Test1_dataset_2010": 4,
+      "Test1_dataset_2010.zip": 1,
+      "Test2_dataset_2010": 10,
+      "Test2_dataset_2010.zip": 1,
+      "Test3_dataset_2010": 3,
+      "Test3_dataset_2010.zip": 1,
+      "Test4_dataset_2010": 3,
+      "Test4_dataset_2010.zip": 1,
+      "Test5_dataset_2010": 11,
+      "Test5_dataset_2010.zip": 1,
+      "Test6_dataset_2010": 5,
+      "Test6_dataset_2010.zip": 1,
+      "Test7_dataset_2010": 17,
+      "Test7_dataset_2010.zip": 1,
+      "XS info Tests_5&6": 3,
+      "XS info Tests_5&6.zip": 1
+    },
+    "suffix_counts": {
+      ".asc": 8,
+      ".csv": 17,
+      ".dbf": 5,
+      ".jpg": 2,
+      ".pdf": 7,
+      ".shp": 5,
+      ".shx": 5,
+      ".txt": 2,
+      ".xls": 2,
+      ".xlsx": 3,
+      ".zip": 8
+    }
+  },
+  "dem_grid_candidates": [
+    {
+      "path": "Test1_dataset_2010/Test1 dataset 2010/test1DEM.asc",
+      "shape": [
+        71,
+        371
+      ],
+      "cellsize": 2.0,
+      "minimum": 9.6061,
+      "maximum": 10.4712,
+      "header": {
+        "ncols": 371.0,
+        "nrows": 71.0,
+        "xllcorner": -20.0,
+        "yllcorner": -20.0,
+        "cellsize": 2.0,
+        "nodata_value": -999.0
+      }
+    },
+    {
+      "path": "Test2_dataset_2010/Test2 dataset 2010/test2DEM.asc",
+      "shape": [
+        1201,
+        1201
+      ],
+      "cellsize": 2.0,
+      "minimum": 7.4517,
+      "maximum": 10.2691,
+      "header": {
+        "ncols": 1201.0,
+        "nrows": 1201.0,
+        "xllcorner": -200.0,
+        "yllcorner": -200.0,
+        "cellsize": 2.0,
+        "nodata_value": -9999.0
+      }
+    },
+    {
+      "path": "Test3_dataset_2010/Test3 dataset 2010/test3DEM.asc",
+      "shape": [
+        71,
+        186
+      ],
+      "cellsize": 2.0,
+      "minimum": 9.7502,
+      "maximum": 10.7326,
+      "header": {
+        "ncols": 186.0,
+        "nrows": 71.0,
+        "xllcorner": -50.0,
+        "yllcorner": -20.0,
+        "cellsize": 2.0,
+        "nodata_value": -999.0
+      }
+    },
+    {
+      "path": "Test5_dataset_2010/Test5 dataset 2010/Test5DEM.asc",
+      "shape": [
+        1224,
+        1378
+      ],
+      "cellsize": 10.0,
+      "minimum": 143.784,
+      "maximum": 399.897,
+      "header": {
+        "ncols": 1378.0,
+        "nrows": 1224.0,
+        "xllcorner": 231335.0,
+        "yllcorner": 829885.0,
+        "cellsize": 10.0,
+        "nodata_value": -9999.0
+      }
+    },
+    {
+      "path": "Test6_dataset_2010/Test6 dataset 2010/Test6ADEM.asc",
+      "shape": [
+        112,
+        2021
+      ],
+      "cellsize": 0.05,
+      "minimum": 4.64856e-05,
+      "maximum": 9.99995,
+      "header": {
+        "ncols": 2021.0,
+        "nrows": 112.0,
+        "xllcorner": -8.575,
+        "yllcorner": -2.825,
+        "cellsize": 0.05,
+        "nodata_value": -9999.0
+      }
+    },
+    {
+      "path": "Test6_dataset_2010/Test6 dataset 2010/Test6BDEM.asc",
+      "shape": [
+        112,
+        2021
+      ],
+      "cellsize": 1.0,
+      "minimum": 4.64856e-05,
+      "maximum": 9.99995,
+      "header": {
+        "ncols": 2021.0,
+        "nrows": 112.0,
+        "xllcorner": -171.5,
+        "yllcorner": -56.5,
+        "cellsize": 1.0,
+        "nodata_value": -9999.0
+      }
+    },
+    {
+      "path": "Test7_dataset_2010/Test7DEM.asc",
+      "shape": [
+        8000,
+        3000
+      ],
+      "cellsize": 1.0,
+      "minimum": 3.12988,
+      "maximum": 53.7326,
+      "header": {
+        "ncols": 3000.0,
+        "nrows": 8000.0,
+        "xllcorner": 384000.0,
+        "yllcorner": 237000.0,
+        "cellsize": 1.0,
+        "nodata_value": -9999.0
+      }
+    },
+    {
+      "path": "Test7_dataset_2010/Test7DEM_10m.asc",
+      "shape": [
+        801,
+        301
+      ],
+      "cellsize": 10.0,
+      "minimum": 6.8625,
+      "maximum": 53.6469,
+      "header": {
+        "ncols": 301.0,
+        "nrows": 801.0,
+        "xllcorner": 383995.0,
+        "yllcorner": 236995.0,
+        "cellsize": 10.0,
+        "nodata_value": -9999.0
+      }
+    }
+  ],
+  "adaptation": {
+    "status": "INGESTION_READY_CORE_BOUNDARY_UNSUPPORTED",
+    "selected_grid": {
+      "path": "Test3_dataset_2010/Test3 dataset 2010/test3DEM.asc",
+      "shape": [
+        71,
+        186
+      ],
+      "cellsize": 2.0,
+      "minimum": 9.7502,
+      "maximum": 10.7326,
+      "header": {
+        "ncols": 186.0,
+        "nrows": 71.0,
+        "xllcorner": -50.0,
+        "yllcorner": -20.0,
+        "cellsize": 2.0,
+        "nodata_value": -999.0
+      }
+    },
+    "processed_dem": "data/processed/selected_dem.npy",
+    "hydraulic_blocker": "Current MountainFloodCA does not expose the benchmark package's general time-varying inflow/stage boundary conditions or obstacle masks. Test 1 is run separately with an explicit experiment-only stage-boundary wrapper; this does not imply that the core API supports all official tests."
+  }
+}

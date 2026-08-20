@@ -1,0 +1,10 @@
+{
+  "experiment": "08_nyc_floodnet",
+  "status": "DATA_AUDIT_COMPLETE_MODEL_RUN_PENDING",
+  "data_downloaded": true,
+  "data_audited": true,
+  "rainfall_boundary_inputs_downloaded": false,
+  "rainfall_model_executed": false,
+  "formal_validation_complete": false,
+  "reason": "The official event observations are ready, but event rainfall, tide, DEM, drainage and boundary inputs must be assembled before an honest model comparison."
+}

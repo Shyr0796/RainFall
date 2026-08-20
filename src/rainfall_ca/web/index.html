@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="GPU 加速二维山地降雨—汇流元胞自动机交互演示" />
+    <title>RainCell GPU · 山地降雨汇流实验室</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <div class="eyebrow">RAINfall computational lab</div>
+            <h1>RainCell <em>GPU</em></h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a class="report-link" href="/report" target="_blank" rel="noopener">技术与使用报告 ↗</a>
+          <div class="hardware-pill" id="hardwarePill">
+            <span class="status-dot"></span>
+            <span id="hardwareText">正在检测计算设备…</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="control-panel" aria-label="仿真参数">
+          <div class="panel-intro">
+            <span class="section-index">CONTROL / 01</span>
+            <h2>构造一场山洪</h2>
+            <p>调整降雨源与地表参数。带 <span class="reset-tag">重建</span> 的项目会在“生成新地形”后生效。</p>
+          </div>
+
+          <section class="control-section">
+            <button class="section-toggle" type="button" aria-expanded="true">
+              <span>降雨区域</span><span>−</span>
+            </button>
+            <div class="control-body">
+              <label class="range-control">
+                <span><b>降雨强度</b><output data-for="rainfall_mm_h">95 mm/h</output></span>
+                <input id="rainfall_mm_h" data-live type="range" min="0" max="300" step="5" value="95" />
+              </label>
+              <label class="range-control">
+                <span><b>降雨历时</b><output data-for="rain_duration_min">60 min</output></span>
+                <input id="rain_duration_min" data-live type="range" min="5" max="180" step="5" value="60" />
+              </label>
+              <div class="two-col">
+                <label class="range-control compact">
+                  <span><b>中心 X</b><output data-for="rain_center_x">50%</output></span>
+                  <input id="rain_center_x" data-live type="range" min="0" max="1" step="0.01" value="0.5" />
+                </label>
+                <label class="range-control compact">
+                  <span><b>中心 Y</b><output data-for="rain_center_y">22%</output></span>
+                  <input id="rain_center_y" data-live type="range" min="0" max="1" step="0.01" value="0.22" />
+                </label>
+              </div>
+              <div class="two-col">
+                <label class="range-control compact">
+                  <span><b>区域宽度</b><output data-for="rain_width">48%</output></span>
+                  <input id="rain_width" data-live type="range" min="0.05" max="1" step="0.01" value="0.48" />
+                </label>
+                <label class="range-control compact">
+                  <span><b>区域高度</b><output data-for="rain_height">30%</output></span>
+                  <input id="rain_height" data-live type="range" min="0.05" max="1" step="0.01" value="0.30" />
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <button class="section-toggle" type="button" aria-expanded="true">
+              <span>地表与水动力</span><span>−</span>
+            </button>
+            <div class="control-body">
+              <label class="range-control">
+                <span><b>入渗能力</b><output data-for="infiltration_mm_h">8 mm/h</output></span>
+                <input id="infiltration_mm_h" data-live type="range" min="0" max="60" step="1" value="8" />
+              </label>
+              <label class="range-control">
+                <span><b>Manning 糙率</b><output data-for="manning_n">0.055</output></span>
+                <input id="manning_n" data-live type="range" min="0.015" max="0.12" step="0.001" value="0.055" />
+              </label>
+              <label class="switch-row">
+                <span><b>下游开放出口</b><small>允许谷口排水</small></span>
+                <input id="open_outlet" data-live type="checkbox" checked /><i aria-hidden="true"></i>
+              </label>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <button class="section-toggle" type="button" aria-expanded="true">
+              <span>山地 DEM</span><span>−</span>
+            </button>
+            <div class="control-body">
+              <div class="two-col select-grid">
+                <label><span>网格尺寸 <i class="reset-tag">重建</i></span>
+                  <select id="grid_size" data-reset>
+                    <option value="96">96 × 96</option>
+                    <option value="192" selected>192 × 192</option>
+                    <option value="256">256 × 256</option>
+                    <option value="384">384 × 384</option>
+                  </select>
+                </label>
+                <label><span>单元边长 <i class="reset-tag">重建</i></span>
+                  <select id="cell_size_m" data-reset>
+                    <option value="5">5 m</option>
+                    <option value="10" selected>10 m</option>
+                    <option value="20">20 m</option>
+                    <option value="30">30 m</option>
+                  </select>
+                </label>
+              </div>
+              <label class="range-control">
+                <span><b>地形种子 <i class="reset-tag">重建</i></b><output data-for="seed">42</output></span>
+                <input id="seed" data-reset type="range" min="1" max="999" step="1" value="42" />
+              </label>
+              <label class="range-control">
+                <span><b>山地起伏 <i class="reset-tag">重建</i></b><output data-for="relief_m">180 m</output></span>
+                <input id="relief_m" data-reset type="range" min="40" max="400" step="10" value="180" />
+              </label>
+              <label class="range-control">
+                <span><b>南北落差 <i class="reset-tag">重建</i></b><output data-for="north_south_drop_m">110 m</output></span>
+                <input id="north_south_drop_m" data-reset type="range" min="0" max="250" step="10" value="110" />
+              </label>
+            </div>
+          </section>
+
+          <button id="regenerateBtn" class="regenerate-btn" type="button">
+            <span aria-hidden="true">↻</span> 生成新地形并清零
+          </button>
+        </aside>
+
+        <section class="simulation-stage" aria-label="二维洪水仿真视图">
+          <div class="stage-heading">
+            <div>
+              <span class="section-index">SIMULATION / 02</span>
+              <h2>山地降雨—汇流场</h2>
+            </div>
+            <div class="view-tabs" role="group" aria-label="显示图层">
+              <button type="button" class="active" data-view="terrain">综合</button>
+              <button type="button" data-view="depth">水深</button>
+              <button type="button" data-view="speed">流速</button>
+            </div>
+          </div>
+
+          <div class="map-frame">
+            <canvas id="simulationCanvas" width="192" height="192" aria-label="DEM 与水流实时视图"></canvas>
+            <div class="map-north" aria-hidden="true"><span>N</span><i></i></div>
+            <div class="scale-bar" aria-label="地图比例尺"><i></i><span id="scaleLabel">480 m</span></div>
+            <div class="rain-key"><i></i><span id="rainStatus">可控降雨区</span></div>
+            <div class="cell-readout" id="cellReadout">移动鼠标查看单元</div>
+            <div class="legend" id="legend">
+              <span id="legendMax">深水</span><i></i><span>浅水</span>
+            </div>
+          </div>
+
+          <div class="transport-bar">
+            <div class="run-controls">
+              <button id="runBtn" class="primary-control" type="button"><span>▶</span> 开始</button>
+              <button id="stepBtn" class="icon-control" type="button" title="单帧推进" aria-label="单帧推进">▮▶</button>
+              <button id="clearBtn" class="icon-control" type="button" title="清零积水" aria-label="清零积水">↺</button>
+              <button id="exportBtn" class="icon-control" type="button" title="导出当前画面" aria-label="导出当前画面">↓</button>
+            </div>
+            <div class="timeline">
+              <div class="timeline-copy"><span>仿真时间</span><strong id="simClock">00:00:00</strong></div>
+              <div class="timeline-track"><i id="timelineProgress"></i></div>
+            </div>
+            <label class="speed-select">每帧迭代
+              <select id="iterationsPerFrame">
+                <option value="4">4</option><option value="8">8</option><option value="16" selected>16</option><option value="32">32</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="metrics-grid">
+            <article><span>最大水深</span><strong id="maxDepth">0.000</strong><small>m</small></article>
+            <article><span>最大流速</span><strong id="maxSpeed">0.000</strong><small>m/s</small></article>
+            <article><span>域内水量</span><strong id="storage">0.0</strong><small>m³</small></article>
+            <article><span>质量闭合误差</span><strong id="massError">0.000</strong><small>%</small></article>
+            <article><span>GPU 步速</span><strong id="stepRate">—</strong><small>step/s</small></article>
+          </div>
+
+          <div class="budget-strip" aria-label="累计水量账本">
+            <span>WATER LEDGER</span>
+            <dl><div><dt>降雨输入</dt><dd id="rainVolume">0.0 m³</dd></div><div><dt>入渗损失</dt><dd id="infiltrationVolume">0.0 m³</dd></div><div><dt>谷口出流</dt><dd id="outflowVolume">0.0 m³</dd></div></dl>
+          </div>
+
+          <div class="model-note">
+            <span>MODEL NOTE</span>
+            <p>本页是教学与算法筛查原型：质量守恒 + 局部惯性通量 + Manning 阻力 + 降雨/入渗。合成 DEM 与结果未经真实事件校准，不可直接用于工程设计或预警发布。</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

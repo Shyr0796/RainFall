@@ -1,0 +1,13 @@
+test,metric,value,criterion,status
+closed_domain_mass,relative_mass_error,6.649383285867867e-07,< 2e-5,PASS
+uniform_rain_infiltration,max_abs_depth_error_m,1.1641532182693481e-10,< 2e-7 m,PASS
+lake_at_rest,max_abs_depth_change_m,0.0,< 3e-6 m,PASS
+lake_at_rest,max_abs_unit_discharge_m2_s,0.0,< 3e-6,PASS
+diagonal_slope,direction_error_deg,8.263122577290005e-06,< 0.5 deg,PASS
+downslope_patch,centroid_shift_cells,6.983571564260986,> 0.2,PASS
+downslope_patch,relative_storage_error,0.0,< 2e-5,PASS
+open_outlet,absolute_closure_error_m3,1.6753823645743182e-05,< 1e-3 m3,PASS
+timestep_sensitivity,rmse_1s_vs_0.25s_m,1.4069045391806867e-05,reported; no universal threshold,SKIP
+timestep_sensitivity,rmse_0.5s_vs_0.25s_m,4.758761406264966e-06,reported; no universal threshold,SKIP
+timestep_sensitivity,error_decreases_with_refinement,1.0,0.5s RMSE <= 1.0s RMSE,PASS
+cpu_gpu_consistency,max_abs_depth_difference_m,nan,requires CUDA backend,SKIP

@@ -1,0 +1,66 @@
+[
+  {
+    "file": "data/processed/full_model/CN_II_existing_conditions/Harrisonville_RAS_II_existing_conditions/Harrisonville_RAS_1/Existing Conditions Terrain/Existing Conditions.hdf",
+    "groups": 32,
+    "datasets": 63,
+    "sample_dataset_paths": [
+      "Terrain/Existing Conditions.Base/0/Mask",
+      "Terrain/Existing Conditions.Base/0/Min-Max",
+      "Terrain/Existing Conditions.Base/0/Perimeter",
+      "Terrain/Existing Conditions.Base/1/Mask",
+      "Terrain/Existing Conditions.Base/1/Min-Max",
+      "Terrain/Existing Conditions.Base/1/Perimeter",
+      "Terrain/Existing Conditions.Base/2/Mask",
+      "Terrain/Existing Conditions.Base/2/Min-Max",
+      "Terrain/Existing Conditions.Base/2/Perimeter",
+      "Terrain/Existing Conditions.Base/3/Mask",
+      "Terrain/Existing Conditions.Base/3/Min-Max",
+      "Terrain/Existing Conditions.Base/3/Perimeter",
+      "Terrain/Existing Conditions.Base/4/Mask",
+      "Terrain/Existing Conditions.Base/4/Min-Max",
+      "Terrain/Existing Conditions.Base/4/Perimeter",
+      "Terrain/Existing Conditions.Base/5/Mask",
+      "Terrain/Existing Conditions.Base/5/Min-Max",
+      "Terrain/Existing Conditions.Base/5/Perimeter",
+      "Terrain/Existing Conditions.Base/6/Mask",
+      "Terrain/Existing Conditions.Base/6/Min-Max"
+    ]
+  },
+  {
+    "file": "data/processed/full_model/CN_II_existing_conditions/Harrisonville_RAS_II_existing_conditions/Harrisonville_RAS_1/Roughness/Manning's n.hdf",
+    "groups": 0,
+    "datasets": 3,
+    "sample_dataset_paths": [
+      "IDs",
+      "ManningsN",
+      "Names"
+    ]
+  },
+  {
+    "file": "data/processed/full_model/CN_II_existing_conditions/Harrisonville_RAS_II_existing_conditions/Harrisonville_RAS_1/SilverJackets-Ha.g09.hdf",
+    "groups": 21,
+    "datasets": 110,
+    "sample_dataset_paths": [
+      "Geometry/2D Flow Area Break Lines/Attributes",
+      "Geometry/2D Flow Area Break Lines/Polyline Info",
+      "Geometry/2D Flow Area Break Lines/Polyline Parts",
+      "Geometry/2D Flow Area Break Lines/Polyline Points",
+      "Geometry/2D Flow Areas/Attributes",
+      "Geometry/2D Flow Areas/Cell Info",
+      "Geometry/2D Flow Areas/Cell Points",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Center Coordinate",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Center Manning's n",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Face and Orientation Info",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Face and Orientation Values",
+      "Geometry/2D Flow Areas/Harrisonville/Cells FacePoint Indexes",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Minimum Elevation",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Surface Area",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Volume Elevation Info",
+      "Geometry/2D Flow Areas/Harrisonville/Cells Volume Elevation Values",
+      "Geometry/2D Flow Areas/Harrisonville/FacePoints Cell Index Values",
+      "Geometry/2D Flow Areas/Harrisonville/FacePoints Cell Info",
+      "Geometry/2D Flow Areas/Harrisonville/FacePoints Coordinate",
+      "Geometry/2D Flow Areas/Harrisonville/FacePoints Face and Orientation Info"
+    ]
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "raw_event_rows": 138,
+  "valid_events": 132,
+  "excluded_events": 6,
+  "sites": 23,
+  "calibration_sites": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22
+  ],
+  "blind_test_sites": [
+    5,
+    10,
+    15,
+    20,
+    23
+  ],
+  "calibration_events": 104,
+  "blind_test_events": 28,
+  "events_with_expected_minute_count": 132,
+  "events_with_negative_rain": 0,
+  "events_with_negative_runoff": 0,
+  "events_with_imputed_porosity": 6,
+  "all_events_have_initial_shallow_soil_moisture": true,
+  "note": "138 repository event rows reduce to the documented 132 usable experiments after author-selected subplot and complete mean rainfall/runoff filters."
+}

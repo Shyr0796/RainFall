@@ -1,0 +1,32 @@
+[
+  {
+    "file": "Flood_Events_Data_Dictionary.xlsx",
+    "bytes": 66977,
+    "sha256": "dda03af1eb0661f3bc8c6d2a0d9d0f55eb03036f4032ae7050a11634c42574d0"
+  },
+  {
+    "file": "Floodnet_Open_Data_Description_2026-03-05.pdf",
+    "bytes": 4572059,
+    "sha256": "b5253c42f1a7efe0bcc566583cad70ee75bfaac5296ad4323a2d586d70853ed5"
+  },
+  {
+    "file": "deployments_metadata.json",
+    "bytes": 37890,
+    "sha256": "2db00f5cec069623f2bf531cee2a84af2ca3978c41f51b82e4ae3822dc3c286d"
+  },
+  {
+    "file": "events_metadata.json",
+    "bytes": 46877,
+    "sha256": "f299181afc9681bf67632fa4cf1ab255f5f40d99b6e4313711143c4ca18f1f81"
+  },
+  {
+    "file": "floodnet_deployments.csv",
+    "bytes": 110166,
+    "sha256": "db99acc45a98899700068f99f5a53d3687f66de744ef08f2f702495ff8b54952"
+  },
+  {
+    "file": "floodnet_events.csv",
+    "bytes": 4595823,
+    "sha256": "5c5f998c5892c28a9a043d2000a4604757927d22dc4ebd9e0a655384cca791a4"
+  }
+]

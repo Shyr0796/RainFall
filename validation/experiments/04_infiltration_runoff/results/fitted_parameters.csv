@@ -1,0 +1,13 @@
+land_use,model,parameter,value,objective,n_calibration_events
+arable land,constant_loss,f_const_mm_min,0.4037528666054151,0.026396102715480374,32
+arable land,constant_loss,tau_min,9.672035486016366,0.026396102715480374,32
+arable land,soil_state_decay,f_final_mm_min,0.19621641656961275,0.014938562733917924,32
+arable land,soil_state_decay,deficit_scale_mm_min,2.1872276270258273,0.014938562733917924,32
+arable land,soil_state_decay,decay_per_min,0.0019387718734733394,0.014938562733917924,32
+arable land,soil_state_decay,tau_min,9.67401815121348,0.014938562733917924,32
+pasture,constant_loss,f_const_mm_min,0.5052369343579228,0.03482747458374034,72
+pasture,constant_loss,tau_min,12.960652964585249,0.03482747458374034,72
+pasture,soil_state_decay,f_final_mm_min,0.08243351773320833,0.01305762687410932,72
+pasture,soil_state_decay,deficit_scale_mm_min,8.144513419463031,0.01305762687410932,72
+pasture,soil_state_decay,decay_per_min,0.01615425956870125,0.01305762687410932,72
+pasture,soil_state_decay,tau_min,9.24368630725749,0.01305762687410932,72

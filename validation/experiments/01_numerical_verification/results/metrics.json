@@ -1,0 +1,259 @@
+{
+  "experiment": "01_numerical_verification",
+  "scope": "synthetic numerical verification; no observational validation",
+  "generated_unix_s": 1786444423.202668,
+  "runtime_s": 0.5546166896820068,
+  "environment": {
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "numpy": "2.4.4"
+  },
+  "summary": {
+    "pass": 9,
+    "fail": 0,
+    "skip": 3
+  },
+  "checks": [
+    {
+      "test": "closed_domain_mass",
+      "metric": "relative_mass_error",
+      "value": 6.649383285867867e-07,
+      "criterion": "< 2e-5",
+      "status": "PASS"
+    },
+    {
+      "test": "uniform_rain_infiltration",
+      "metric": "max_abs_depth_error_m",
+      "value": 1.1641532182693481e-10,
+      "criterion": "< 2e-7 m",
+      "status": "PASS"
+    },
+    {
+      "test": "lake_at_rest",
+      "metric": "max_abs_depth_change_m",
+      "value": 0.0,
+      "criterion": "< 3e-6 m",
+      "status": "PASS"
+    },
+    {
+      "test": "lake_at_rest",
+      "metric": "max_abs_unit_discharge_m2_s",
+      "value": 0.0,
+      "criterion": "< 3e-6",
+      "status": "PASS"
+    },
+    {
+      "test": "diagonal_slope",
+      "metric": "direction_error_deg",
+      "value": 8.263122577290005e-06,
+      "criterion": "< 0.5 deg",
+      "status": "PASS"
+    },
+    {
+      "test": "downslope_patch",
+      "metric": "centroid_shift_cells",
+      "value": 6.983571564260986,
+      "criterion": "> 0.2",
+      "status": "PASS"
+    },
+    {
+      "test": "downslope_patch",
+      "metric": "relative_storage_error",
+      "value": 0.0,
+      "criterion": "< 2e-5",
+      "status": "PASS"
+    },
+    {
+      "test": "open_outlet",
+      "metric": "absolute_closure_error_m3",
+      "value": 1.6753823645743182e-05,
+      "criterion": "< 1e-3 m3",
+      "status": "PASS"
+    },
+    {
+      "test": "timestep_sensitivity",
+      "metric": "rmse_1s_vs_0.25s_m",
+      "value": 1.4069045391806867e-05,
+      "criterion": "reported; no universal threshold",
+      "status": "SKIP"
+    },
+    {
+      "test": "timestep_sensitivity",
+      "metric": "rmse_0.5s_vs_0.25s_m",
+      "value": 4.758761406264966e-06,
+      "criterion": "reported; no universal threshold",
+      "status": "SKIP"
+    },
+    {
+      "test": "timestep_sensitivity",
+      "metric": "error_decreases_with_refinement",
+      "value": 1.0,
+      "criterion": "0.5s RMSE <= 1.0s RMSE",
+      "status": "PASS"
+    },
+    {
+      "test": "cpu_gpu_consistency",
+      "metric": "max_abs_depth_difference_m",
+      "value": NaN,
+      "criterion": "requires CUDA backend",
+      "status": "SKIP"
+    }
+  ],
+  "details": {
+    "closed_domain_mass": {
+      "backend": "cpu",
+      "device_name": "NumPy CPU fallback",
+      "gpu_active": false,
+      "simulation_time_s": 30.9794929441094,
+      "steps": 64,
+      "dt_s": 0.5,
+      "max_depth_m": 0.004005029331892729,
+      "wet_cells": 186,
+      "max_speed_m_s": 1.1396597623825073,
+      "storage_m3": 9.518008679151535,
+      "rainfall_m3": 9.916463383706287,
+      "rain_active": true,
+      "infiltration_m3": 0.39846129839133937,
+      "outflow_m3": 0.0,
+      "mass_error_m3": 6.59383658785373e-06,
+      "relative_mass_error": 6.649383285867867e-07,
+      "compute_ms": 6.2315579270944,
+      "steps_per_second": 10270.304913917635
+    },
+    "uniform_rain_infiltration": {
+      "rainfall_mm_h": 60.0,
+      "infiltration_mm_h": 12.0,
+      "duration_s": 120.0,
+      "analytic_depth_m": 0.0016,
+      "model_mean_depth_m": 0.0015999999595806003,
+      "max_abs_depth_error_m": 1.1641532182693481e-10,
+      "stats": {
+        "backend": "cpu",
+        "device_name": "NumPy CPU fallback",
+        "gpu_active": false,
+        "simulation_time_s": 120.0,
+        "steps": 240,
+        "dt_s": 0.5,
+        "max_depth_m": 0.0015999998431652784,
+        "wet_cells": 2304,
+        "max_speed_m_s": 0.0,
+        "storage_m3": 92.15999841690063,
+        "rainfall_m3": 115.20000547170639,
+        "rain_active": true,
+        "infiltration_m3": 23.039998020976782,
+        "outflow_m3": 0.0,
+        "mass_error_m3": -9.033828973770142e-06,
+        "relative_mass_error": 7.84186505615131e-08,
+        "compute_ms": 0.1456280006095767,
+        "steps_per_second": 6866.8112987485365
+      }
+    },
+    "lake_at_rest": {
+      "steps": 25,
+      "duration_s": 1.484626905095683,
+      "max_abs_depth_change_m": 0.0,
+      "max_abs_unit_discharge_m2_s": 0.0
+    },
+    "diagonal_slope": {
+      "bed_slope": 0.01,
+      "expected_angle_deg": 30.0,
+      "measured_angle_deg": 29.999991736877423,
+      "direction_error_deg": 8.263122577290005e-06
+    },
+    "downslope_patch": {
+      "initial_centroid_row": 5.000000241454018,
+      "final_centroid_row": 11.983571805715004,
+      "centroid_shift_cells": 6.983571564260986,
+      "relative_storage_error": 0.0
+    },
+    "open_outlet": {
+      "initial_volume_m3": 120.00000476837158,
+      "final_volume_m3": 117.89027452468872,
+      "reported_outflow_m3": 2.1097134898592156,
+      "closure_error_m3": 1.6753823645743182e-05
+    },
+    "timestep_sensitivity": {
+      "reference_max_dt_s": 0.25,
+      "target_time_s": 600.0,
+      "runs": {
+        "1.0": {
+          "backend": "cpu",
+          "device_name": "NumPy CPU fallback",
+          "gpu_active": false,
+          "simulation_time_s": 600.0,
+          "steps": 604,
+          "dt_s": 0.7292546120006591,
+          "max_depth_m": 0.09308052062988281,
+          "wet_cells": 312,
+          "max_speed_m_s": 1.2091689109802246,
+          "storage_m3": 507.0243835449219,
+          "rainfall_m3": 551.8020880408585,
+          "rain_active": false,
+          "infiltration_m3": 44.77854276483413,
+          "outflow_m3": 0.0,
+          "mass_error_m3": 0.0008382688974961638,
+          "relative_mass_error": 1.5191477445697772e-06,
+          "compute_ms": 0.10860990732908249,
+          "steps_per_second": 9207.263173239353
+        },
+        "0.5": {
+          "backend": "cpu",
+          "device_name": "NumPy CPU fallback",
+          "gpu_active": false,
+          "simulation_time_s": 600.0,
+          "steps": 1200,
+          "dt_s": 0.5,
+          "max_depth_m": 0.0930662453174591,
+          "wet_cells": 312,
+          "max_speed_m_s": 1.318495512008667,
+          "storage_m3": 507.03978538513184,
+          "rainfall_m3": 551.8020875751972,
+          "rain_active": false,
+          "infiltration_m3": 44.762563228141516,
+          "outflow_m3": 0.0,
+          "mass_error_m3": 0.00026103807613253593,
+          "relative_mass_error": 4.73064676648152e-07,
+          "compute_ms": 0.10759907308965921,
+          "steps_per_second": 9293.760357644798
+        },
+        "0.25": {
+          "backend": "cpu",
+          "device_name": "NumPy CPU fallback",
+          "gpu_active": false,
+          "simulation_time_s": 600.0,
+          "steps": 2400,
+          "dt_s": 0.25,
+          "max_depth_m": 0.09306146949529648,
+          "wet_cells": 312,
+          "max_speed_m_s": 1.3915070295333862,
+          "storage_m3": 507.0413112640381,
+          "rainfall_m3": 551.8020875751972,
+          "rain_active": false,
+          "infiltration_m3": 44.76021138834767,
+          "outflow_m3": 0.0,
+          "mass_error_m3": -0.0005649228114634752,
+          "relative_mass_error": 1.0237779526096663e-06,
+          "compute_ms": 0.10871491394937038,
+          "steps_per_second": 9198.369972179806
+        }
+      },
+      "errors": {
+        "1.0": {
+          "rmse_m": 1.4069045391806867e-05,
+          "max_abs_m": 0.00036760978400707245
+        },
+        "0.5": {
+          "rmse_m": 4.758761406264966e-06,
+          "max_abs_m": 0.00012383796274662018
+        }
+      }
+    },
+    "cpu_gpu_consistency": {
+      "status": "skipped_no_cuda_backend",
+      "cpu_backend": "cpu",
+      "candidate_backend": "cpu",
+      "candidate_device": "NumPy CPU fallback",
+      "max_abs_depth_difference_m": NaN
+    }
+  }
+}

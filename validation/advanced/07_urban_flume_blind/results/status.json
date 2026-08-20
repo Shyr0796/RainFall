@@ -1,0 +1,10 @@
+{
+  "experiment": "07_urban_flume_blind",
+  "status": "PARTIAL_BLIND_PROTOCOL_EXECUTED_NOT_FORMAL_VALIDATION",
+  "calibration_executed": true,
+  "blind_executed": true,
+  "formal_validation_complete": false,
+  "blocked_geometry": [
+    "BD"
+  ]
+}

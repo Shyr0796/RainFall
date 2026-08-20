@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: License terms
+    url: https://github.com/Emergent-Balance-Lab/RainFall/blob/main/LICENSE
+    about: Read the PolyForm Noncommercial License 1.0.0 before using RainFall.

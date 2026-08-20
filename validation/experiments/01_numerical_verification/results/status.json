@@ -1,0 +1,9 @@
+{
+  "status": "completed_with_cuda_skip",
+  "evidence_class": "synthetic code and numerical verification; not observational validation",
+  "passed_checks": 9,
+  "failed_checks": 0,
+  "skipped_or_report_only_checks": 3,
+  "cuda_consistency": "skipped_no_cuda_backend",
+  "metrics": "metrics.json"
+}

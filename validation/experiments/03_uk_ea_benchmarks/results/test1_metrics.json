@@ -1,0 +1,56 @@
+{
+  "experiment": "UK_EA_SC120002_Test1",
+  "classification": "standard numerical benchmark, not observations",
+  "run_status": "COMPLETED_WITH_EXPERIMENT_STAGE_BOUNDARY",
+  "source_files": {
+    "dem": "test1DEM.asc",
+    "boundary": "Test1BC.csv",
+    "points": "Test1output.csv"
+  },
+  "configuration": {
+    "official_domain_m": [
+      700.0,
+      100.0
+    ],
+    "source_dem_resolution_m": 2.0,
+    "model_resolution_m": 10.0,
+    "resampling": "5x5 block mean",
+    "manning_n": 0.03,
+    "duration_h": 20.0,
+    "all_nonstage_boundaries": "closed high walls",
+    "stage_boundary": "left edge; experiment-only Dirichlet water-level wrapper"
+  },
+  "water_balance": {
+    "initial_volume_m3": 64.37969207763672,
+    "net_boundary_exchange_m3": 10156.722620129585,
+    "final_volume_m3": 10221.099090576172,
+    "closure_error_m3": -0.0032216310501098633,
+    "relative_closure_error": 3.171919890501804e-07
+  },
+  "official_expected_outcomes": {
+    "peak_point_water_level_m": 10.35,
+    "final_retained_pond_level_m": 10.25,
+    "source": "SC120002 technical report, Test 1"
+  },
+  "point_metrics": {
+    "1": {
+      "peak_water_level_m": 10.35159969329834,
+      "peak_error_vs_expected_10_35_m": 0.001599693298340199,
+      "final_water_level_m": 10.255309104919434,
+      "final_error_vs_expected_10_25_m": 0.005309104919433594
+    },
+    "2": {
+      "peak_water_level_m": 10.351787567138672,
+      "peak_error_vs_expected_10_35_m": 0.0017875671386722303,
+      "final_water_level_m": 10.255327224731445,
+      "final_error_vs_expected_10_25_m": 0.0053272247314453125
+    }
+  },
+  "runtime_s": 8.380722284317017,
+  "limitations": [
+    "No field observations are involved.",
+    "The prescribed-stage boundary is implemented in this experiment, not in the core RainFall API.",
+    "The official 2 m DEM is block-averaged to the specified 10 m model grid; sub-grid sill elevations may shift.",
+    "Comparison is against official expected peak/final levels, not a full authoritative reference time series."
+  ]
+}

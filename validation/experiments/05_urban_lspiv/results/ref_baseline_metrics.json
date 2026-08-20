@@ -1,0 +1,41 @@
+{
+  "status": "EXECUTED_DIAGNOSTIC_BASELINE_NOT_FORMAL_VALIDATION",
+  "config": "Ref",
+  "duration_s": 20.00041323343868,
+  "steps": 6269,
+  "runtime_s": 3.523243536008522,
+  "grid_shape": [
+    135,
+    99
+  ],
+  "dx_m": 0.02,
+  "manning_n_uncalibrated": 0.01,
+  "comparison_cells": 4226,
+  "speed_rmse_m_s_surface_vs_depth_average": 0.12028018670394862,
+  "speed_mae_m_s_surface_vs_depth_average": 0.09230619142080719,
+  "direction_mae_deg_where_both_speed_gt_0p02": 27.28588756909111,
+  "storage_m3": 0.18821558747192138,
+  "inflow_volume_m3": 0.23766504750993378,
+  "stage_outflow_volume_m3": 0.23242785285777304,
+  "stage_inflow_volume_m3": 0.013976452849023305,
+  "stage_outflow_by_name_m3": {
+    "3_right": 0.062629156942809,
+    "1_ymax_left": 0.11238469919575615,
+    "2_ymax_right": 0.05741399671920689
+  },
+  "stage_inflow_by_name_m3": {
+    "3_right": 0.006739260274393619,
+    "1_ymax_left": 0.0006703325052050672,
+    "2_ymax_right": 0.0065668600694246465
+  },
+  "mass_error_m3": 1.2490009027033011e-15,
+  "mass_error_fraction_of_inflow": 5.25529906811853e-15,
+  "cautions": [
+    "20 s is a computational smoke baseline, not demonstrated steady-state convergence.",
+    "Geometry mask is derived from non-zero processed LSPIV cells and downsampled to 2 cm.",
+    "Observed velocity is surface velocity; simulated velocity is depth averaged.",
+    "No calibration, turbulence model, or surface-to-depth velocity observation operator was applied.",
+    "Boundary placement was cross-checked against Li et al. Fig. 3c; HDF y=0 is the physical top inlet A."
+  ],
+  "direction_cells": 3746
+}

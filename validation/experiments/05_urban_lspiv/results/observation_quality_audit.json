@@ -1,0 +1,31 @@
+{
+  "status": "PASS_WITH_COMPARABILITY_CAUTIONS",
+  "record_id": 5254164,
+  "doi": "10.5281/zenodo.5254164",
+  "license": "cc-by-4.0",
+  "archive_files_verified": 4,
+  "archive_files_total": 6,
+  "extracted_files": 44,
+  "hdf5_datasets": 4704,
+  "dataset1_tests": 128,
+  "dataset2_configurations": 8,
+  "quality_evidence": {
+    "depth_instrument_accuracy_m": 0.001,
+    "flowmeter_accuracy_fraction": 0.005,
+    "typical_depth_standard_deviation_m": [
+      0.0005,
+      0.002
+    ],
+    "outflow_rating_curve_R2": ">0.99",
+    "mass_difference_typical_fraction": "<=0.025 except very small total inflow",
+    "velocity_time_convergence": "60 s vs 90 s differs <0.01 m/s at >90% points"
+  },
+  "comparability_cautions": [
+    "V/Vx/Vy are time-averaged surface velocities; RainFall returns depth-averaged velocity.",
+    "NaN values mark the approximately 1 cm wall-adjacent band; exact zeros also encode non-flow areas.",
+    "The HDF5 velocity array is stored as (x,y) in h5py, not conventional image (y,x).",
+    "Dataset 2 is steady recirculating flume flow, not rainfall-runoff forcing.",
+    "A valid comparison needs three prescribed inflows, three downstream stages, and explicit buildings."
+  ],
+  "raw_video_downloaded": false
+}

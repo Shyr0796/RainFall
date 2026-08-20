@@ -1,0 +1,4 @@
+resolution_m,building_cells,building_area_m2,area_difference_vs_1m_m2,area_relative_difference_vs_1m
+1.0,245093,245093.0,0.0,0.0
+2.0,61203,244812.0,-281.0,-0.0011465035721134427
+5.0,9808,245200.0,107.0,0.00043656897585814367
