@@ -3,6 +3,8 @@
 > **寻求合作 · Seeking Research Collaboration**  
 > RainFall 欢迎高校、科研机构、公共安全与环境保护组织围绕洪涝水动力、GPU 计算、城市 GIS、真实事件验证和风险决策开展**非商业科研合作**。请通过 GitHub Issue，以 `[Collaboration]` 开头说明团队、研究问题、可提供的数据/基准以及预期成果。  
 > We welcome **non-commercial research collaboration** on flood hydrodynamics, GPU computing, urban GIS, real-event validation, and risk-informed decision support.
+>
+> 合作联系 · Collaboration contact：[songchun2307@gmail.com](mailto:songchun2307@gmail.com) · [个人主页 / Personal website](https://chun-song.com)
 
 > **不可商用 · Non-commercial use only**  
 > 本项目采用 [PolyForm Noncommercial License 1.0.0](LICENSE)。未经版权所有者另行书面授权，不得将本项目或其衍生作品用于商业产品、收费服务、商业咨询、商业部署或其他预期商业应用。产业合作或商业许可请先发起 `[Commercial Licensing]` Issue 洽谈。  
